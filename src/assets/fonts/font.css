@@ -1,0 +1,34 @@
+@font-face {
+  font-family: 'SourceHanSans-Regular';
+  src: url('SourceHanSans-Regular.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'pangmenbiaoti';
+  src: url('@/assets/font/pangmenbiaoti.ttf');
+}
+@font-face {
+  font-family: 'pangmenzhengdao';
+  src: url('@/assets/font/pangmenzhengdao.ttf');
+}
+@font-face {
+  font-family: 'MF LiHei';
+  src: url('@/assets/font/MFLiHei.otf');
+}
+@font-face {
+  font-family: 'FZYTK';
+  src: url('@/assets/font/FZYTK.TTF');
+}
+@font-face {
+  font-family: 'Reducto';
+  src: url('@/assets/font/Reducto Condensed SSi Condensed.ttf');
+}
+@font-face {
+  font-family: 'YouSheBiaoTiHei';
+  src: url('ysbth.ttf');
+}
+@font-face {
+  font-family: 'DingTalk-JinBuTi';
+  src: url('@/assets/font/DingTalk-JinBuTi.ttf');
+}
