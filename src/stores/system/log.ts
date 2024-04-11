@@ -22,7 +22,7 @@ export const useLogStore = defineStore('log', {
     //   - type 非必须 类型 success | warning | info(默认) | danger
     //   - time 必须 日志记录时间
     //   - meta 非必须 其它携带信息
-    log: []
+    log: [],
   }),
   // optional getters
   getters: {
@@ -38,8 +38,8 @@ export const useLogStore = defineStore('log', {
      * @param {*} state vuex state
      */
     lengthError(state) {
-      return state.log.filter(log => log.type === 'danger').length
-    }
+      return state.log.filter((log) => log.type === 'danger').length
+    },
   },
   // optional actions
   actions: {
@@ -65,15 +65,15 @@ export const useLogStore = defineStore('log', {
           // 当前地址
           url: get(window, 'location.href', ''),
           // 用户设置
-          ...meta
-        }
+          ...meta,
+        },
       })
     },
     clean() {
       // store 赋值
       this.log = []
-    }
-  }
+    },
+  },
 })
 
 if (import.meta.hot) {

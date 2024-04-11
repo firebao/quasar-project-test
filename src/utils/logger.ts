@@ -49,7 +49,9 @@ export function capsule(title, info, type = 'primary') {
   console.log(
     `%c ${title} %c ${info} %c`,
     'background:#35495E; padding: 1px; border-radius: 3px 0 0 3px; color: #fff;',
-    `background:${typeColor(type)}; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;`,
+    `background:${typeColor(
+      type
+    )}; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff;`,
     'background:transparent'
   )
 }
@@ -58,7 +60,10 @@ export function capsule(title, info, type = 'primary') {
  * @description 打印彩色文字
  */
 function colorful(textArr) {
-  console.log(`%c${textArr.map(t => t.text || '').join('%c')}`, ...textArr.map(t => `color: ${typeColor(t.type)};`))
+  console.log(
+    `%c${textArr.map((t) => t.text || '').join('%c')}`,
+    ...textArr.map((t) => `color: ${typeColor(t.type)};`)
+  )
 }
 
 /**
@@ -109,7 +114,7 @@ const makeLog = (prefix = '') => {
     Notify.create({
       message: args[0],
       timeout: 3000,
-      type: 'positive'
+      type: 'positive',
     })
   }
 }
@@ -134,14 +139,14 @@ const makeWarn = (prefix = '') => {
       message: '业务逻辑警告',
       type: 'warning',
       meta: {
-        error
-      }
+        error,
+      },
     })
 
     Notify.create({
       message: msg,
       timeout: 3000,
-      type: 'warning'
+      type: 'warning',
     })
   }
 }
@@ -165,14 +170,14 @@ const makeError = (prefix = '') => {
       message: '业务逻辑异常',
       type: 'danger',
       meta: {
-        error
-      }
+        error,
+      },
     })
     // 显示提示
     Notify.create({
       message: msg,
       timeout: 3000,
-      type: 'negative'
+      type: 'negative',
     })
   }
 }
@@ -192,7 +197,7 @@ const makeDebug = (prefix = '') => {
       Notify.create({
         message: args[0],
         timeout: 3000,
-        type: 'info'
+        type: 'info',
       })
     }
   }

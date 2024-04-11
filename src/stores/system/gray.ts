@@ -14,7 +14,7 @@ export const useGrayStore = defineStore('gray', {
   // a function that returns a fresh state
   state: () => ({
     // 灰度
-    active: false
+    active: false,
   }),
   // optional getters
   getters: {},
@@ -32,8 +32,8 @@ export const useGrayStore = defineStore('gray', {
      */
     set(active) {
       this.active = active
-    }
-  }
+    },
+  },
 })
 
 if (import.meta.hot) {

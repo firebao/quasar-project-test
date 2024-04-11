@@ -1,5 +1,5 @@
-import LayoutContainer from 'app/test/cypress/wrappers/LayoutContainer.vue';
-import QuasarDrawer from '../QuasarDrawer.vue';
+import LayoutContainer from 'app/test/cypress/wrappers/LayoutContainer.vue'
+import QuasarDrawer from '../QuasarDrawer.vue'
 
 describe('QuasarDrawer', () => {
   it('should show a drawer', () => {
@@ -7,12 +7,12 @@ describe('QuasarDrawer', () => {
       props: {
         component: QuasarDrawer,
       },
-    });
+    })
     cy.dataCy('drawer')
       .should('exist')
       .dataCy('button')
-      .should('not.be.visible');
-    cy.get('.q-scrollarea .scroll').scrollTo('bottom', { duration: 500 });
-    cy.get('.q-scrollarea .scroll').dataCy('button').should('be.visible');
-  });
-});
+      .should('not.be.visible')
+    cy.get('.q-scrollarea .scroll').scrollTo('bottom', { duration: 500 })
+    cy.get('.q-scrollarea .scroll').dataCy('button').should('be.visible')
+  })
+})

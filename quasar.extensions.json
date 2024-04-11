@@ -1,19 +1,12 @@
 {
   "@quasar/testing": {
-    "harnesses": [
-      "unit-vitest",
-      "e2e-cypress"
-    ]
+    "harnesses": ["unit-vitest", "e2e-cypress"]
   },
   "@quasar/testing-unit-vitest": {
-    "options": [
-      "ui"
-    ]
+    "options": ["ui"]
   },
   "@quasar/testing-e2e-cypress": {
     "port": 8080,
-    "options": [
-      "code-coverage"
-    ]
+    "options": ["code-coverage"]
   }
 }

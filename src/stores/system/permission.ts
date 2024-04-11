@@ -28,7 +28,7 @@ function isEmpty(value) {
 }
 const pages = import.meta.glob<any>('../../pages/**/*.vue', { eager: true })
 
-const resolveComponent = path => {
+const resolveComponent = (path) => {
   const importPage = pages[`../../pages${path}/Index.vue`]
 
   if (!importPage) {
@@ -52,7 +52,7 @@ function buildRouter(parent: RouteRecordRaw, list: Menu[]): RouteRecordRaw[] {
   if (parent == null) {
     parent = { path: '/', children: [] }
   }
-  list.forEach(item => {
+  list.forEach((item) => {
     let newRouter = parent
     if (item.type !== 20 && !isEmpty(item.component)) {
       // 如果是按钮 或者没有配置component，则不加入路由
@@ -74,8 +74,8 @@ function buildRouter(parent: RouteRecordRaw, list: Menu[]): RouteRecordRaw[] {
         meta: {
           title: item.title,
           auth: true,
-          cache: true
-        }
+          cache: true,
+        },
       } as RouteRecordRaw
       item.redirect && (newRouter.redirect = item.redirect)
       children.push(newRouter)
@@ -101,7 +101,7 @@ function buildPermissions(menuTree, permissionList) {
   if (menuTree == null) {
     menuTree = []
   }
-  menuTree.forEach(item => {
+  menuTree.forEach((item) => {
     if (item.permission != null && item.permission !== '') {
       // 权限为空
       permissionList.push(item.permission)
@@ -123,7 +123,7 @@ function buildMenu(menuTree) {
     menuTree = []
   }
   let menus = []
-  menuTree.forEach(item => {
+  menuTree.forEach((item) => {
     if (item.type !== 10) {
       // 只有菜单类型才加入
       return
@@ -139,7 +139,7 @@ function buildMenu(menuTree) {
     menus.push({
       icon: icon,
       children: children,
-      ...item
+      ...item,
     })
   })
   if (menus.length === 0) {
@@ -153,7 +153,7 @@ export const usePermissionStore = defineStore('permission', {
       routes: [],
       addRoutes: [],
       permissions: [],
-      inited: false
+      inited: false,
     }
   },
   getters: {
@@ -178,12 +178,12 @@ export const usePermissionStore = defineStore('permission', {
       this.permissions = []
     },
     generateRoutes({ menuTree }) {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         // 处理路由
         const accessedRoutes = buildRouter(null, menuTree) // 根据后台获取到的资源树构建路由列表
         const permissions = buildPermissions(menuTree, []) // 从资源树中抽取权限code列表
         this.setRoutes({ accessedRoutes, permissions }) // 将菜单和权限存储到pinia里面
-        accessedRoutes.forEach(route => {
+        accessedRoutes.forEach((route) => {
           if (route.name === 'layout' && route.path === '/') {
             route.children = route.children.concat(frameInRoutes[0].children)
           }
@@ -220,8 +220,8 @@ export const usePermissionStore = defineStore('permission', {
     },
     async getAccessibleMenus({ state, dispatch }) {
       //
-    }
-  }
+    },
+  },
 })
 
 if (import.meta.hot) {

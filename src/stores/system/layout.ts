@@ -33,16 +33,16 @@ export const useLayoutStore = defineStore('layout', {
       layerManager: false,
       navigation: false,
       featureInfo: false,
-      videoPlayer: false
+      videoPlayer: false,
     },
     /**
      * index 页面布局参数
      */
     dynamicRender: {
       datasource: {
-        workBench: false
-      }
-    }
+        workBench: false,
+      },
+    },
   }),
   // optional getters
   getters: {},
@@ -55,7 +55,7 @@ export const useLayoutStore = defineStore('layout', {
      */
     toggleGlobalLayout(layoutOpts: GlobalLayoutOpts) {
       const optsArray = Object.keys(layoutOpts)
-      optsArray.forEach(opt => {
+      optsArray.forEach((opt) => {
         isBoolean(layoutOpts[opt]) && (this.global[opt] = layoutOpts[opt])
       })
     },
@@ -67,7 +67,7 @@ export const useLayoutStore = defineStore('layout', {
     toggleDynamicRenderPageLayout(layoutOpts) {
       const fn = (opts, layout) => {
         const optsArray = Object.keys(opts)
-        optsArray.forEach(opt => {
+        optsArray.forEach((opt) => {
           if (isPlainObject(opts[opt])) {
             fn(opts[opt], layout[opt])
           } else {
@@ -77,8 +77,8 @@ export const useLayoutStore = defineStore('layout', {
       }
 
       fn(layoutOpts, this.dynamicRender)
-    }
-  }
+    },
+  },
 })
 
 if (import.meta.hot) {

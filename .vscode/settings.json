@@ -7,10 +7,12 @@
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "vue"],
   "typescript.tsdk": "node_modules/typescript/lib",
   "cSpell.words": [
+    "Antd",
     "intlify",
     "jsxdev",
     "keyof",
     "middlewares",
+    "nopadding",
     "themeisle",
     "themify",
     "todos",

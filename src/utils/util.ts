@@ -41,14 +41,14 @@ export function open(url) {
  * @param {Array} menu 原始的菜单数据
  */
 export function supplementPath(menu) {
-  return menu.map(e => ({
+  return menu.map((e) => ({
     ...e,
     path: e.path || uniqueId('vc-menu-empty-'),
     ...(e.children
       ? {
-          children: supplementPath(e.children)
+          children: supplementPath(e.children),
         }
-      : {})
+      : {}),
   }))
 }
 

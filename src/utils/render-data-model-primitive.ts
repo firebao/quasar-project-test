@@ -31,7 +31,7 @@ function createVcPointModel(dataset, coordinates, renderingType, feature) {
       color: '#ffc10',
       scale: 1,
       show,
-      feature: cloneDeep(feature)
+      feature: cloneDeep(feature),
     }
     return billboard
   } else {
@@ -41,7 +41,7 @@ function createVcPointModel(dataset, coordinates, renderingType, feature) {
       color: gisshow.giscolor,
       pixelSize: 8,
       show,
-      feature: cloneDeep(feature)
+      feature: cloneDeep(feature),
     }
     return point
   }
@@ -71,7 +71,7 @@ function createVcPolylineModel(dataset, coordinates, renderingType, feature) {
       color: gisshow.giscolor,
       feature: cloneDeep(feature),
       scale: 1,
-      show
+      show,
     }
     return billboard
   } else {
@@ -81,7 +81,7 @@ function createVcPolylineModel(dataset, coordinates, renderingType, feature) {
       material: gisshow.giscolor,
       feature: cloneDeep(feature),
       width: gisshow.width,
-      show
+      show,
     }
     return polyline
   }
@@ -105,7 +105,7 @@ function createVcPolygonModel(dataset, coordinates, renderingType, feature) {
       // color: gisshow.giscolor,
       feature: cloneDeep(feature),
       scale: 1,
-      show
+      show,
     }
     return billboard
   } else {
@@ -119,10 +119,10 @@ function createVcPolygonModel(dataset, coordinates, renderingType, feature) {
       show,
       polygonHierarchy: {
         positions: coordinates[0],
-        holes
+        holes,
       },
       color: gisshow.giscolor,
-      feature: cloneDeep(feature)
+      feature: cloneDeep(feature),
     }
     return polygon
   }
@@ -136,7 +136,12 @@ function createVcPolygonModel(dataset, coordinates, renderingType, feature) {
  * @returns
  */
 export function processPoint2PrimitiveModel(dataset, feature, renderingType) {
-  return createVcPointModel(dataset, feature.geometry.coordinates, renderingType, feature)
+  return createVcPointModel(
+    dataset,
+    feature.geometry.coordinates,
+    renderingType,
+    feature
+  )
 }
 /**
  * 将 GeoJSON MultiPoint 数据处理成 Primitive API 数据模型。
@@ -145,11 +150,17 @@ export function processPoint2PrimitiveModel(dataset, feature, renderingType) {
  * @param {*} renderingType
  * @returns
  */
-export function processMultiPoint2PrimitiveModel(dataset, feature, renderingType) {
+export function processMultiPoint2PrimitiveModel(
+  dataset,
+  feature,
+  renderingType
+) {
   const models = []
   const coordinates = feature.geometry.coordinates
   for (let i = 0; i < coordinates.length; i++) {
-    models.push(createVcPointModel(dataset, coordinates[i], renderingType, feature))
+    models.push(
+      createVcPointModel(dataset, coordinates[i], renderingType, feature)
+    )
   }
 
   return models
@@ -162,8 +173,17 @@ export function processMultiPoint2PrimitiveModel(dataset, feature, renderingType
  * @param {*} renderingType
  * @returns
  */
-export function processLineString2PrimitiveModel(dataset, feature, renderingType) {
-  return createVcPolylineModel(dataset, feature.geometry.coordinates, renderingType, feature)
+export function processLineString2PrimitiveModel(
+  dataset,
+  feature,
+  renderingType
+) {
+  return createVcPolylineModel(
+    dataset,
+    feature.geometry.coordinates,
+    renderingType,
+    feature
+  )
 }
 
 /**
@@ -173,11 +193,17 @@ export function processLineString2PrimitiveModel(dataset, feature, renderingType
  * @param {*} renderingType
  * @returns
  */
-export function processMultiLineString2PrimitiveModel(dataset, feature, renderingType) {
+export function processMultiLineString2PrimitiveModel(
+  dataset,
+  feature,
+  renderingType
+) {
   const models = []
   const lineStrings = feature.geometry.coordinates
   for (let i = 0; i < lineStrings.length; i++) {
-    models.push(createVcPolylineModel(dataset, lineStrings[i], renderingType, feature))
+    models.push(
+      createVcPolylineModel(dataset, lineStrings[i], renderingType, feature)
+    )
   }
   return models
 }
@@ -190,7 +216,12 @@ export function processMultiLineString2PrimitiveModel(dataset, feature, renderin
  * @returns
  */
 export function processPolygon2PrimitiveModel(dataset, feature, renderingType) {
-  return createVcPolygonModel(dataset, feature.geometry.coordinates, renderingType, feature)
+  return createVcPolygonModel(
+    dataset,
+    feature.geometry.coordinates,
+    renderingType,
+    feature
+  )
 }
 
 /**
@@ -200,11 +231,17 @@ export function processPolygon2PrimitiveModel(dataset, feature, renderingType) {
  * @param {*} renderingType
  * @returns
  */
-export function processMultiPolygon2PrimitiveModel(dataset, feature, renderingType) {
+export function processMultiPolygon2PrimitiveModel(
+  dataset,
+  feature,
+  renderingType
+) {
   const models = []
   const lineStrings = feature.geometry.coordinates
   for (let i = 0; i < lineStrings.length; i++) {
-    models.push(createVcPolygonModel(dataset, lineStrings[i], renderingType, feature))
+    models.push(
+      createVcPolygonModel(dataset, lineStrings[i], renderingType, feature)
+    )
   }
   return models
 }

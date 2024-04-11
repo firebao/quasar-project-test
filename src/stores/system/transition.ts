@@ -13,7 +13,7 @@ export const useTransitionStore = defineStore('transition', {
   state: () => {
     return {
       // 是否开启页面过度动画
-      active: setting.transition.active
+      active: setting.transition.active,
     }
   },
   actions: {
@@ -31,7 +31,7 @@ export const useTransitionStore = defineStore('transition', {
         dbName: 'sys',
         path: 'transition.active',
         value: String(this.active),
-        user: true
+        user: true,
       })
     },
     /**
@@ -45,10 +45,10 @@ export const useTransitionStore = defineStore('transition', {
         dbName: 'sys',
         path: 'transition.active',
         defaultValue: String(setting.transition.active),
-        user: true
+        user: true,
       })
-    }
-  }
+    },
+  },
 })
 if (import.meta.hot) {
   import.meta.hot.accept(acceptHMRUpdate(useTransitionStore, import.meta.hot))

@@ -15,5 +15,5 @@ import { useRenderStore } from './render'
 export const viewerStore = {
   useLayerStore: (pinia?: Pinia) => useLayerStore(pinia),
   useOverlayStore: (pinia?: Pinia) => useOverlayStore(pinia),
-  useRenderStore: (pinia?: Pinia) => useRenderStore(pinia)
+  useRenderStore: (pinia?: Pinia) => useRenderStore(pinia),
 }

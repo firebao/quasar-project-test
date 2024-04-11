@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-03-21 17:54:29
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-04-03 10:56:13
+ * @LastEditTime : 2024-04-11 18:53:24
  * @Description  : 主题列表
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -13,7 +13,6 @@
     :columns="columns"
     :rows="rows"
     dense
-    hide-header
     hide-pagination
     data-test="table"
   >
@@ -28,6 +27,7 @@
             icon="fa fa-circle-check"
             rounded
             outline
+            data-test="active"
           >
             &nbsp;已激活
           </q-btn>
@@ -35,6 +35,7 @@
             v-else
             rounded
             outline
+            data-test="inactive"
             @click="handleSelectTheme(props.row.name)"
           >
             使用
@@ -48,7 +49,7 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
 import { stores } from 'src/stores/index.js'
-import { ThemeOptions } from 'src/types/theme.js'
+import { useTheme } from 'src/hooks/useTheme.js'
 
 type Columns = {
   id: string
@@ -67,14 +68,7 @@ const rows = computed(() => {
   return stores.system.useThemeStore().list
 })
 
-const activeName = computed(() => {
-  return stores.system.useThemeStore().activeName
-})
-
-const theme = computed<ThemeOptions>(() => {
-  const themeStore = stores.system.useThemeStore()
-  return themeStore.themeConfig[themeStore.activeName]
-})
+const { activeName, theme } = useTheme()
 
 const handleSelectTheme = (name: string) => {
   stores.system.useThemeStore().set(name)

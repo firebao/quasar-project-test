@@ -14,8 +14,8 @@ export const useOverlayStore = defineStore('overlay', {
       position: [117.186419, 45.66446, 20],
       show: false,
       text: '',
-      pixelOffset: [0, 0]
-    }
+      pixelOffset: [0, 0],
+    },
   }),
   // optional getters
   getters: {},
@@ -31,8 +31,8 @@ export const useOverlayStore = defineStore('overlay', {
       this.mouseOverNameOpts.position = undefined
       this.mouseOverNameOpts.show = false
       this.mouseOverNameOpts.text = undefined
-    }
-  }
+    },
+  },
 })
 
 if (import.meta.hot) {

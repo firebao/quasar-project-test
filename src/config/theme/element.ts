@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-03-25 16:23:50
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-03-26 14:02:09
+ * @LastEditTime : 2024-04-07 15:10:23
  * @Description  : 酷炫科技蓝主题
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -15,20 +15,21 @@ export const themeElement = {
   global: {
     themeBGColor: '#314255',
     themeBGMaskColor: 'rgba(0, 0, 0, 0)',
-    themeColor: '#bfcbd9',
+    themeColor: '#2196f3',
     themeColorAlpha: 'rgba(70, 160, 252, 0.6)',
-    themeColorActive: '#46a0fc',
+    themeColorActive: '#2196f3',
     themeScrollTopBackgroundColor: 'rgba(0, 0, 0, 0)',
     themeQInputColor: '#bfcbd9',
     themeQInputBorderColor: '#fff9',
     themeQCheckboxTruthyColor: '#46a0fc',
     themeQMenuColor: '#bfcbd9',
     themeQMenuBackgroundColor: 'rgba(29, 29, 29, 0.6)',
-    themeQCardColor: '#bfcbd9',
+    themeQCardColor: '#2196f3',
     themeQCardHeaderBackgroundColor: 'rgba(49, 66, 85, 0.5)',
     themeQCardBackgroundColor: 'rgba(29, 29, 29, 0.6)',
     themeQScrollAreaColor: '#46a0fc',
   },
+
   // 头部
   // header: {
   //   /**

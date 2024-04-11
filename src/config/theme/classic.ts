@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-03-25 16:23:50
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-03-26 14:02:48
+ * @LastEditTime : 2024-04-07 17:39:16
  * @Description  : 经典国网绿主题
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -15,7 +15,7 @@ export const themeClassic = {
   global: {
     themeBGColor: '#ebf1f6',
     themeBGMaskColor: 'rgba(0, 0, 0, 0)',
-    themeColor: '#cbe1e5',
+    themeColor: '#009688',
     themeColorAlpha: 'rgba(255, 255, 255, 0.6)',
     themeColorActive: 'teal',
     themeScrollTopBackgroundColor: 'rgba(0, 0, 0, 0)',

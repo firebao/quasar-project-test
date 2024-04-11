@@ -7,8 +7,21 @@
  * @FilePath: \vue-cesium-demo\src\utils\render-data-model-entity.ts
  */
 import { toRef } from 'vue'
-import type { Position, Polygon, MultiPolygon, Properties, Feature, FeatureCollection, LineString } from '@turf/turf'
-import { polygonToLineString, lineStringToPolygon, centroid, centerOfMass } from '@turf/turf'
+import type {
+  Position,
+  Polygon,
+  MultiPolygon,
+  Properties,
+  Feature,
+  FeatureCollection,
+  LineString,
+} from '@turf/turf'
+import {
+  polygonToLineString,
+  lineStringToPolygon,
+  centroid,
+  centerOfMass,
+} from '@turf/turf'
 import { cloneDeep } from 'lodash'
 import { VcFeature } from '@src/types/render-data'
 import { VcEntityProps } from 'vue-cesium'
@@ -23,7 +36,12 @@ import { makeCartesian3 } from 'vue-cesium/es/utils/cesium-helpers'
  * @returns
  */
 export function processPoint2EntityModel(props, feature, renderingType) {
-  return createVcGraphicPointModel(props, feature.geometry.coordinates, renderingType, feature)
+  return createVcGraphicPointModel(
+    props,
+    feature.geometry.coordinates,
+    renderingType,
+    feature
+  )
 }
 
 /**
@@ -37,7 +55,9 @@ export function processMultiPoint2EntityModel(props, feature, renderingType) {
   const models = []
   const coordinates = feature.geometry.coordinates
   for (let i = 0; i < coordinates.length; i++) {
-    models.push(createVcGraphicPointModel(props, coordinates[i], renderingType, feature))
+    models.push(
+      createVcGraphicPointModel(props, coordinates[i], renderingType, feature)
+    )
   }
 
   return models
@@ -51,7 +71,12 @@ export function processMultiPoint2EntityModel(props, feature, renderingType) {
  * @returns
  */
 export function processLineString2EntityModel(props, feature, renderingType) {
-  return createVcGraphicPolylineModel(props, feature.geometry.coordinates, renderingType, feature)
+  return createVcGraphicPolylineModel(
+    props,
+    feature.geometry.coordinates,
+    renderingType,
+    feature
+  )
 }
 
 /**
@@ -61,11 +86,22 @@ export function processLineString2EntityModel(props, feature, renderingType) {
  * @param renderingType 渲染类型
  * @returns
  */
-export function processMultiLineString2EntityModel(props, feature, renderingType) {
+export function processMultiLineString2EntityModel(
+  props,
+  feature,
+  renderingType
+) {
   const models = []
   const lineStrings = feature.geometry.coordinates
   for (let i = 0; i < lineStrings.length; i++) {
-    models.push(createVcGraphicPolylineModel(props, lineStrings[i], renderingType, feature))
+    models.push(
+      createVcGraphicPolylineModel(
+        props,
+        lineStrings[i],
+        renderingType,
+        feature
+      )
+    )
   }
   return models
 }
@@ -78,7 +114,12 @@ export function processMultiLineString2EntityModel(props, feature, renderingType
  * @returns
  */
 export function processPolygon2EntityModel(props, feature, renderingType) {
-  return createVcGraphicPolygonModel(props, feature.geometry.coordinates, renderingType, feature)
+  return createVcGraphicPolygonModel(
+    props,
+    feature.geometry.coordinates,
+    renderingType,
+    feature
+  )
 }
 
 /**
@@ -92,7 +133,12 @@ export function processMultiPolygon2EntityModel(props, feature, renderingType) {
   const models = []
   const polygons = feature.geometry.coordinates
   for (let i = 0; i < polygons.length; i++) {
-    const result = createVcGraphicPolygonModel(props, polygons[i], renderingType, feature)
+    const result = createVcGraphicPolygonModel(
+      props,
+      polygons[i],
+      renderingType,
+      feature
+    )
     const results = Array.isArray(result) ? result : [result]
     models.push(...results)
   }
@@ -113,21 +159,23 @@ function createVcGraphicPointModel(
   renderingType: string,
   feature: VcFeature
 ) {
-  const show = Cesium.defined(feature.properties.checked) ? toRef(feature.properties, 'checked') : true
+  const show = Cesium.defined(feature.properties.checked)
+    ? toRef(feature.properties, 'checked')
+    : true
   feature.properties.actualRenderingType = renderingType
 
   const entityModel: any = {
     id: Cesium.createGuid(),
     position: coordinates,
     show: show,
-    feature: cloneDeep(feature)
+    feature: cloneDeep(feature),
   }
 
   // const childProps = feature.properties?.props
   // const childPropsR = childProps && isPlainObject(childProps) ? childProps : childProps ? JSON.parse(childProps) : {}
   // const vcProps = Object.assign({}, props[renderingType], childPropsR[renderingType])
   entityModel[renderingType] = {
-    ...props[renderingType]
+    ...props[renderingType],
   }
 
   if (renderingType === 'model') {
@@ -135,7 +183,10 @@ function createVcGraphicPointModel(
     if (Array.isArray(hprOpts)) {
       const position = makeCartesian3(coordinates) as Cesium.Cartesian3
       const hpr = new Cesium.HeadingPitchRoll(...hprOpts)
-      entityModel.orientation = Cesium.Transforms.headingPitchRollQuaternion(position, hpr)
+      entityModel.orientation = Cesium.Transforms.headingPitchRollQuaternion(
+        position,
+        hpr
+      )
     }
   }
   return entityModel
@@ -159,28 +210,37 @@ function createVcGraphicPolylineModel(
   feature.properties.actualRenderingType = renderingType
 
   if (renderingType === 'polygon') {
-    const featurePolygon = lineStringToPolygon(feature as Feature<LineString, Properties>)
+    const featurePolygon = lineStringToPolygon(
+      feature as Feature<LineString, Properties>
+    )
     return processPolygon2EntityModel(props, featurePolygon, renderingType)
-  } else if (renderingType === 'billboard' || renderingType === 'point' || renderingType === 'label') {
+  } else if (
+    renderingType === 'billboard' ||
+    renderingType === 'point' ||
+    renderingType === 'label'
+  ) {
     // 计算中心点
-    const center = feature.geometry.type === 'MultiPolygon' ? centroid(feature) : centerOfMass(feature)
+    const center =
+      feature.geometry.type === 'MultiPolygon'
+        ? centroid(feature)
+        : centerOfMass(feature)
     const entity: any = {
       show,
       position: center.geometry.coordinates,
-      feature: cloneDeep(feature)
+      feature: cloneDeep(feature),
     }
     switch (renderingType) {
       case 'billboard': {
         // const billboardProps = Object.assign({}, props.billboard, feature.properties?.props?.billboard)
         entity.billboard = {
-          ...props.billboard
+          ...props.billboard,
         }
         break
       }
       case 'point': {
         // const pointProps = Object.assign({}, props.point, feature.properties?.props?.point)
         entity.point = {
-          ...props.point
+          ...props.point,
         }
         break
       }
@@ -188,7 +248,7 @@ function createVcGraphicPolylineModel(
         // const labelProps = Object.assign({}, props.label, feature.properties?.props?.label)
         entity.label = {
           text: feature.properties.text || feature.properties.name,
-          ...props.label
+          ...props.label,
         }
       }
     }
@@ -201,9 +261,9 @@ function createVcGraphicPolylineModel(
       show,
       polyline: {
         positions: coordinates,
-        ...props.polyline
+        ...props.polyline,
       },
-      feature: cloneDeep(feature)
+      feature: cloneDeep(feature),
     }
     return entity
   }
@@ -231,20 +291,32 @@ function createVcGraphicPolygonModel(
     // MultiPolygon 会得到 FeatureCollection
     // Polygon 返回 Feature
     if (feature.geometry.type === 'MultiPolygon') {
-      const featureCollection = polygonToLineString(feature as Feature<MultiPolygon, Properties>) as FeatureCollection
+      const featureCollection = polygonToLineString(
+        feature as Feature<MultiPolygon, Properties>
+      ) as FeatureCollection
       const models = []
-      featureCollection.features.forEach(featureLine => {
+      featureCollection.features.forEach((featureLine) => {
         if (featureLine.geometry.type === 'LineString') {
-          models.push(processLineString2EntityModel(props, featureLine, renderingType))
+          models.push(
+            processLineString2EntityModel(props, featureLine, renderingType)
+          )
         } else {
-          models.push(...processMultiLineString2EntityModel(props, featureLine, renderingType))
+          models.push(
+            ...processMultiLineString2EntityModel(
+              props,
+              featureLine,
+              renderingType
+            )
+          )
         }
       })
 
       return models
     } else if (feature.geometry.type === 'Polygon') {
       // Todo 待测试
-      const featureLine = polygonToLineString(feature as Feature<Polygon, Properties>)
+      const featureLine = polygonToLineString(
+        feature as Feature<Polygon, Properties>
+      )
       return processLineString2EntityModel(props, featureLine, renderingType)
     }
   } else if (renderingType === 'polygon') {
@@ -252,7 +324,7 @@ function createVcGraphicPolygonModel(
     const holes = []
     for (let i = 1; i < coordinates.length; i++) {
       holes.push({
-        positions: coordinates[i]
+        positions: coordinates[i],
       })
     }
     // const polygonProps = Object.assign({}, props.polygon, feature.properties?.props?.polygon)
@@ -262,33 +334,40 @@ function createVcGraphicPolygonModel(
         height: 0,
         hierarchy: {
           positions: coordinates[0],
-          holes
+          holes,
         },
-        ...props.polygon
+        ...props.polygon,
       },
-      feature: cloneDeep(feature)
+      feature: cloneDeep(feature),
     }
     return entity
-  } else if (renderingType === 'billboard' || renderingType === 'point' || renderingType === 'label') {
+  } else if (
+    renderingType === 'billboard' ||
+    renderingType === 'point' ||
+    renderingType === 'label'
+  ) {
     // 计算中心点
-    const center = feature.geometry.type === 'MultiPolygon' ? centroid(feature) : centerOfMass(feature)
+    const center =
+      feature.geometry.type === 'MultiPolygon'
+        ? centroid(feature)
+        : centerOfMass(feature)
     const entity: any = {
       show,
       position: center.geometry.coordinates,
-      feature: cloneDeep(feature)
+      feature: cloneDeep(feature),
     }
     switch (renderingType) {
       case 'billboard': {
         // const billboardProps = Object.assign({}, props.billboard, feature.properties?.props?.billboard)
         entity.billboard = {
-          ...props.billboard
+          ...props.billboard,
         }
         break
       }
       case 'point': {
         // const pointProps = Object.assign({}, props.point, feature.properties?.props?.point)
         entity.point = {
-          ...props.point
+          ...props.point,
         }
         break
       }
@@ -296,7 +375,7 @@ function createVcGraphicPolygonModel(
         // const labelProps = Object.assign({}, props.label, feature.properties?.props?.label)
         entity.label = {
           text: feature.properties.text || feature.properties.name,
-          ...props.label
+          ...props.label,
         }
       }
     }

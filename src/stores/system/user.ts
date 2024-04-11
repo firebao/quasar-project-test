@@ -15,7 +15,7 @@ import { useDBStore } from './db'
 export const useUserStore = defineStore('user', {
   // a function that returns a fresh state
   state: () => ({
-    info: {} as UserInfo
+    info: {} as UserInfo,
   }),
   // optional getters
   getters: {},
@@ -35,7 +35,7 @@ export const useUserStore = defineStore('user', {
         dbName: 'sys',
         path: 'user.info',
         value: info,
-        user: true
+        user: true,
       })
     },
     /**
@@ -49,11 +49,11 @@ export const useUserStore = defineStore('user', {
         dbName: 'sys',
         path: 'user.info',
         defaultValue: '',
-        user: true
+        user: true,
       })
       this.set(info)
-    }
-  }
+    },
+  },
 })
 if (import.meta.hot) {
   import.meta.hot.accept(acceptHMRUpdate(useUserStore, import.meta.hot))

@@ -2,8 +2,8 @@
   /*
    * @Author       : wwj 318348750@qq.com
    * @Date         : 2024-03-05 11:01:09
- * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-04-02 16:36:00
+   * @LastEditors  : wwj 318348750@qq.com
+   * @LastEditTime : 2024-04-07 14:57:38
    * @Description  : 规范的tsconfig文件,包含所有配置项以及配置项说明，tsc版本适配5.3.3
    * @link         : Visit https://aka.ms/tsconfig to read more about this file
    *
@@ -98,6 +98,7 @@
       "layouts/*": ["./src/layouts/*"],
       "assets/*": ["./src/assets/*"],
       "config/*": ["./src/config/*"],
+      "hooks/*": ["./src/hooks/*"],
       "@types/*": ["./src/types/*"]
     },
     "resolveJsonModule": true /* 允许 import 命令导入 JSON 文件 */,

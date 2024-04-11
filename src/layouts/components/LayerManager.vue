@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-03-25 11:26:54
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-03-25 15:56:47
+ * @LastEditTime : 2024-04-08 15:18:15
  * @Description  :
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -19,7 +19,7 @@
       </q-card-section>
 
       <q-card-section class="theme-card">
-        <theme-list></theme-list>
+        <!-- <theme-list></theme-list> -->
       </q-card-section>
     </q-card>
   </q-dialog>

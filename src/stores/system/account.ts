@@ -41,7 +41,7 @@ export const useAccountStore = defineStore('account', {
       webStorage.setLocalStorage('uuid', userInfo.id)
       const userStore = useUserStore()
       userStore.set({
-        ...userInfo
+        ...userInfo,
       })
       // 用户登录后从持久化数据加载一系列的设置
       this.load()
@@ -80,7 +80,7 @@ export const useAccountStore = defineStore('account', {
           Dialog.create({
             title: '注销用户',
             message: '确定要注销当前用户吗？',
-            cancel: true
+            cancel: true,
           })
             .onOk(() => {
               grayStore.set(false)
@@ -89,7 +89,7 @@ export const useAccountStore = defineStore('account', {
             .onCancel(() => {
               grayStore.set(false)
               Notify.create({
-                message: '取消注销操作'
+                message: '取消注销操作',
               })
               resolve(false)
             })
@@ -119,8 +119,8 @@ export const useAccountStore = defineStore('account', {
       // await dispatch('system/size/load', null, { root: true })
       // 持久化数据加载颜色设置
       // await dispatch('system/color/load', null, { root: true })
-    }
-  }
+    },
+  },
 })
 
 if (import.meta.hot) {

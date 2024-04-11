@@ -12,7 +12,7 @@ import {
   VcImageryProviderAmapProps,
   VcImageryProviderBaiduProps,
   VcImageryProviderTencentProps,
-  VcImageryProviderTiandituProps
+  VcImageryProviderTiandituProps,
 } from 'vue-cesium'
 
 export const useLayerStore = defineStore('layer', {
@@ -28,7 +28,7 @@ export const useLayerStore = defineStore('layer', {
           brightness: 1,
           contrast: 1,
           sortOrder: 20,
-          show: false
+          show: false,
         },
         children: [
           {
@@ -37,10 +37,10 @@ export const useLayerStore = defineStore('layer', {
               mapStyle: 'img_c',
               token: '436ce7e50d27eede2f2929307e6b33c0',
               minimumLevel: 0,
-              maximumLevel: 17
-            } as VcImageryProviderTiandituProps
-          }
-        ]
+              maximumLevel: 17,
+            } as VcImageryProviderTiandituProps,
+          },
+        ],
       },
       {
         name: 'tianditu_vec',
@@ -51,7 +51,7 @@ export const useLayerStore = defineStore('layer', {
           brightness: 1,
           contrast: 1,
           sortOrder: 20,
-          show: false
+          show: false,
         },
         children: [
           {
@@ -60,10 +60,10 @@ export const useLayerStore = defineStore('layer', {
               mapStyle: 'vec_c',
               token: '436ce7e50d27eede2f2929307e6b33c0',
               minimumLevel: 0,
-              maximumLevel: 17
-            } as VcImageryProviderTiandituProps
-          }
-        ]
+              maximumLevel: 17,
+            } as VcImageryProviderTiandituProps,
+          },
+        ],
       },
       {
         name: 'baidu_img',
@@ -74,7 +74,7 @@ export const useLayerStore = defineStore('layer', {
           brightness: 1,
           contrast: 1,
           sortOrder: 20,
-          show: false
+          show: false,
         },
         children: [
           {
@@ -83,10 +83,10 @@ export const useLayerStore = defineStore('layer', {
               mapStyle: 'img',
               projectionTransforms: { from: 'BD09', to: 'WGS84' },
               minimumLevel: 0,
-              maximumLevel: 17
-            } as VcImageryProviderBaiduProps
-          }
-        ]
+              maximumLevel: 17,
+            } as VcImageryProviderBaiduProps,
+          },
+        ],
       },
       {
         name: 'baidu_vec',
@@ -97,7 +97,7 @@ export const useLayerStore = defineStore('layer', {
           brightness: 1,
           contrast: 1,
           sortOrder: 20,
-          show: false
+          show: false,
         },
         children: [
           {
@@ -106,10 +106,10 @@ export const useLayerStore = defineStore('layer', {
               mapStyle: 'vec',
               projectionTransforms: { from: 'BD09', to: 'WGS84' },
               minimumLevel: 0,
-              maximumLevel: 17
-            } as VcImageryProviderBaiduProps
-          }
-        ]
+              maximumLevel: 17,
+            } as VcImageryProviderBaiduProps,
+          },
+        ],
       },
       {
         name: 'baidu_midnight',
@@ -120,7 +120,7 @@ export const useLayerStore = defineStore('layer', {
           brightness: 1,
           contrast: 1,
           sortOrder: 20,
-          show: false
+          show: false,
         },
         children: [
           {
@@ -129,10 +129,10 @@ export const useLayerStore = defineStore('layer', {
               mapStyle: 'midnight',
               projectionTransforms: { from: 'BD09', to: 'WGS84' },
               minimumLevel: 0,
-              maximumLevel: 17
-            } as VcImageryProviderBaiduProps
-          }
-        ]
+              maximumLevel: 17,
+            } as VcImageryProviderBaiduProps,
+          },
+        ],
       },
       {
         name: 'baidu_dark',
@@ -143,7 +143,7 @@ export const useLayerStore = defineStore('layer', {
           brightness: 1,
           contrast: 1,
           sortOrder: 20,
-          show: false
+          show: false,
         },
         children: [
           {
@@ -152,10 +152,10 @@ export const useLayerStore = defineStore('layer', {
               mapStyle: 'dark',
               projectionTransforms: { from: 'BD09', to: 'WGS84' },
               minimumLevel: 0,
-              maximumLevel: 17
-            } as VcImageryProviderBaiduProps
-          }
-        ]
+              maximumLevel: 17,
+            } as VcImageryProviderBaiduProps,
+          },
+        ],
       },
       {
         name: 'amap_img',
@@ -166,7 +166,7 @@ export const useLayerStore = defineStore('layer', {
           brightness: 1,
           contrast: 1,
           sortOrder: 20,
-          show: false
+          show: false,
         },
         children: [
           {
@@ -175,10 +175,10 @@ export const useLayerStore = defineStore('layer', {
               mapStyle: '6',
               projectionTransforms: { from: 'GCJ02', to: 'WGS84' },
               minimumLevel: 0,
-              maximumLevel: 17
-            } as VcImageryProviderAmapProps
-          }
-        ]
+              maximumLevel: 17,
+            } as VcImageryProviderAmapProps,
+          },
+        ],
       },
       {
         name: 'amap_vec',
@@ -189,7 +189,7 @@ export const useLayerStore = defineStore('layer', {
           brightness: 1,
           contrast: 1,
           sortOrder: 20,
-          show: false
+          show: false,
         },
         children: [
           {
@@ -198,10 +198,10 @@ export const useLayerStore = defineStore('layer', {
               mapStyle: '7',
               projectionTransforms: { from: 'GCJ02', to: 'WGS84' },
               minimumLevel: 0,
-              maximumLevel: 17
-            } as VcImageryProviderAmapProps
-          }
-        ]
+              maximumLevel: 17,
+            } as VcImageryProviderAmapProps,
+          },
+        ],
       },
       {
         name: 'tencent_img',
@@ -212,7 +212,7 @@ export const useLayerStore = defineStore('layer', {
           brightness: 1,
           contrast: 1,
           sortOrder: 20,
-          show: false
+          show: false,
         },
         children: [
           {
@@ -221,10 +221,10 @@ export const useLayerStore = defineStore('layer', {
               mapStyle: 'img',
               projectionTransforms: { from: 'GCJ02', to: 'WGS84' },
               minimumLevel: 0,
-              maximumLevel: 17
-            } as VcImageryProviderTencentProps
-          }
-        ]
+              maximumLevel: 17,
+            } as VcImageryProviderTencentProps,
+          },
+        ],
       },
       {
         name: 'tencent_vector',
@@ -235,7 +235,7 @@ export const useLayerStore = defineStore('layer', {
           brightness: 1,
           contrast: 1,
           sortOrder: 20,
-          show: false
+          show: false,
         },
         children: [
           {
@@ -244,10 +244,10 @@ export const useLayerStore = defineStore('layer', {
               mapStyle: 'vector',
               projectionTransforms: { from: 'GCJ02', to: 'WGS84' },
               minimumLevel: 0,
-              maximumLevel: 17
-            } as VcImageryProviderTencentProps
-          }
-        ]
+              maximumLevel: 17,
+            } as VcImageryProviderTencentProps,
+          },
+        ],
       },
       {
         name: 'tencent_vector_my',
@@ -258,7 +258,7 @@ export const useLayerStore = defineStore('layer', {
           brightness: 1,
           contrast: 1,
           sortOrder: 20,
-          show: false
+          show: false,
         },
         children: [
           {
@@ -268,10 +268,10 @@ export const useLayerStore = defineStore('layer', {
               styleId: '4',
               projectionTransforms: { from: 'GCJ02', to: 'WGS84' },
               minimumLevel: 0,
-              maximumLevel: 17
-            } as VcImageryProviderTencentProps
-          }
-        ]
+              maximumLevel: 17,
+            } as VcImageryProviderTencentProps,
+          },
+        ],
       },
       {
         name: 'osm',
@@ -282,13 +282,13 @@ export const useLayerStore = defineStore('layer', {
           brightness: 1,
           contrast: 1,
           sortOrder: 20,
-          show: false
+          show: false,
         },
         children: [
           {
-            component: 'VcImageryProviderOsm'
-          }
-        ]
+            component: 'VcImageryProviderOsm',
+          },
+        ],
       },
       {
         name: 'arcgis',
@@ -299,14 +299,14 @@ export const useLayerStore = defineStore('layer', {
           brightness: 1,
           contrast: 1,
           sortOrder: 20,
-          show: false
+          show: false,
         },
         children: [
           {
-            component: 'VcImageryProviderArcgis'
-          }
-        ]
-      }
+            component: 'VcImageryProviderArcgis',
+          },
+        ],
+      },
     ],
     overlayLayers: [
       {
@@ -318,7 +318,7 @@ export const useLayerStore = defineStore('layer', {
           brightness: 1,
           contrast: 1,
           sortOrder: 30,
-          show: false
+          show: false,
         },
         children: [
           {
@@ -327,10 +327,10 @@ export const useLayerStore = defineStore('layer', {
               mapStyle: 'cva_c',
               token: '436ce7e50d27eede2f2929307e6b33c0',
               minimumLevel: 0,
-              maximumLevel: 17
-            } as VcImageryProviderTiandituProps
-          }
-        ]
+              maximumLevel: 17,
+            } as VcImageryProviderTiandituProps,
+          },
+        ],
       },
       {
         name: 'amap_label',
@@ -341,7 +341,7 @@ export const useLayerStore = defineStore('layer', {
           brightness: 1,
           contrast: 1,
           sortOrder: 30,
-          show: false
+          show: false,
         },
         children: [
           {
@@ -351,10 +351,10 @@ export const useLayerStore = defineStore('layer', {
               ltype: '4',
               minimumLevel: 0,
               maximumLevel: 17,
-              projectionTransforms: { from: 'GCJ02', to: 'WGS84' }
-            } as VcImageryProviderAmapProps
-          }
-        ]
+              projectionTransforms: { from: 'GCJ02', to: 'WGS84' },
+            } as VcImageryProviderAmapProps,
+          },
+        ],
       },
       {
         name: 'amap_traffictile',
@@ -365,7 +365,7 @@ export const useLayerStore = defineStore('layer', {
           brightness: 1,
           contrast: 1,
           sortOrder: 30,
-          show: false
+          show: false,
         },
         children: [
           {
@@ -374,10 +374,10 @@ export const useLayerStore = defineStore('layer', {
               url: '/traffictile?v=1.0&x={x}&y={y}&z={z}&t=1',
               minimumLevel: 0,
               maximumLevel: 17,
-              projectionTransforms: { from: 'GCJ02', to: 'WGS84' }
-            } as VcImageryProviderAmapProps
-          }
-        ]
+              projectionTransforms: { from: 'GCJ02', to: 'WGS84' },
+            } as VcImageryProviderAmapProps,
+          },
+        ],
       },
       {
         name: 'baidu_traffic',
@@ -388,7 +388,7 @@ export const useLayerStore = defineStore('layer', {
           brightness: 1,
           contrast: 1,
           sortOrder: 30,
-          show: false
+          show: false,
         },
         children: [
           {
@@ -397,10 +397,10 @@ export const useLayerStore = defineStore('layer', {
               mapStyle: 'traffic',
               projectionTransforms: { from: 'BD09', to: 'WGS84' },
               minimumLevel: 0,
-              maximumLevel: 17
-            } as VcImageryProviderBaiduProps
-          }
-        ]
+              maximumLevel: 17,
+            } as VcImageryProviderBaiduProps,
+          },
+        ],
       },
       {
         name: 'admin',
@@ -411,10 +411,10 @@ export const useLayerStore = defineStore('layer', {
           stroke: '#ffc107',
           fill: 'transparent',
           show: false,
-          data: `${import.meta.env.BASE_URL}datas/china.json`
+          data: `${import.meta.env.BASE_URL}datas/china.json`,
         },
-        children: []
-      }
+        children: [],
+      },
     ],
     terrainLayers: [
       {
@@ -422,18 +422,18 @@ export const useLayerStore = defineStore('layer', {
         text: '全球地形',
         component: 'VcTerrainProviderCesium',
         props: {
-          show: false
-        }
+          show: false,
+        },
       },
       {
         name: 'null',
         text: '不显示地形',
         component: undefined,
         props: {
-          show: false
-        }
-      }
-    ]
+          show: false,
+        },
+      },
+    ],
   }),
   // optional getters
   getters: {},
@@ -441,27 +441,35 @@ export const useLayerStore = defineStore('layer', {
   actions: {
     // eslint-disable-next-line @typescript-eslint/member-delimiter-style
     toggle({ names, show }: { names: string | Array<string>; show: boolean }) {
-      const allLayers = [...this.baseLayers, ...this.overlayLayers, ...this.terrainLayers]
+      const allLayers = [
+        ...this.baseLayers,
+        ...this.overlayLayers,
+        ...this.terrainLayers,
+      ]
       names = Array.isArray(names) ? names : [names]
-      names.forEach(name => {
-        const layer = find(allLayers, v => v.name === name)
+      names.forEach((name) => {
+        const layer = find(allLayers, (v) => v.name === name)
         !isUndefined(layer?.show) && (layer.show = show)
         !isUndefined(layer?.props?.show) && (layer.props.show = show)
       })
     },
     loadDefaultLayers(logined?) {
-      const allLayerNames = [...this.baseLayers, ...this.overlayLayers, ...this.terrainLayers].map(v => v.name)
+      const allLayerNames = [
+        ...this.baseLayers,
+        ...this.overlayLayers,
+        ...this.terrainLayers,
+      ].map((v) => v.name)
       this.toggle({
         names: allLayerNames,
-        show: false
+        show: false,
       })
       const showLayerNames = ['tianditu_img', 'admin']
       this.toggle({
         names: showLayerNames,
-        show: true
+        show: true,
       })
-    }
-  }
+    },
+  },
 })
 
 if (import.meta.hot) {

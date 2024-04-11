@@ -13,7 +13,7 @@ import {
   processLineString2EntityModel,
   processMultiLineString2EntityModel,
   processPolygon2EntityModel,
-  processMultiPolygon2EntityModel
+  processMultiPolygon2EntityModel,
 } from './render-data-model-entity'
 import {
   processPoint2PrimitiveModel,
@@ -21,7 +21,7 @@ import {
   processLineString2PrimitiveModel,
   processMultiLineString2PrimitiveModel,
   processPolygon2PrimitiveModel,
-  processMultiPolygon2PrimitiveModel
+  processMultiPolygon2PrimitiveModel,
 } from './render-data-model-primitive'
 
 const entityModelHandler = {
@@ -31,7 +31,7 @@ const entityModelHandler = {
   MultiPoint: processMultiPoint2EntityModel,
   MultiPolygon: processMultiPolygon2EntityModel,
   Point: processPoint2EntityModel,
-  Polygon: processPolygon2EntityModel
+  Polygon: processPolygon2EntityModel,
   // Polygon: processPolygon,
   // Topology: processTopology,
 }
@@ -43,7 +43,7 @@ const primitiveModelHandler = {
   MultiPoint: processMultiPoint2PrimitiveModel,
   MultiPolygon: processMultiPolygon2PrimitiveModel,
   Point: processPoint2PrimitiveModel,
-  Polygon: processPolygon2PrimitiveModel
+  Polygon: processPolygon2PrimitiveModel,
   // Topology: processTopology,
 }
 

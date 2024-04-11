@@ -20,8 +20,8 @@ export const useRenderStore = defineStore('render', {
       renderingType: undefined,
       restoreHandlers: [],
       feature: undefined as VcFeature,
-      featureInfoListItems: []
-    }
+      featureInfoListItems: [],
+    },
   }),
   // optional getters
   getters: {},
@@ -33,8 +33,8 @@ export const useRenderStore = defineStore('render', {
      */
     addRenderDatas(renderDatas) {
       renderDatas = Array.isArray(renderDatas) ? renderDatas : [renderDatas]
-      renderDatas.forEach(renderData => {
-        if (findIndex(this.renderDatas, v => v.id === renderData.id) !== -1) {
+      renderDatas.forEach((renderData) => {
+        if (findIndex(this.renderDatas, (v) => v.id === renderData.id) !== -1) {
           logger.error(
             `添加渲染数据集失败，原因：id 为【${renderData.id} 】的数据已经存在。`,
             '渲染数据模型：',
@@ -50,21 +50,21 @@ export const useRenderStore = defineStore('render', {
      * @param id
      */
     removeRenderDataById(id) {
-      remove(this.renderDatas, v => v.id === id)
+      remove(this.renderDatas, (v) => v.id === id)
     },
     /**
      * 根据 type 移除渲染数据。
      * @param type
      */
     removeRenderDataByType(type) {
-      remove(this.renderDatas, v => v.type === type)
+      remove(this.renderDatas, (v) => v.type === type)
     },
     /**
      * 根据 page 移除渲染数据。
      * @param page
      */
     removeRenderDataByPage(page) {
-      remove(this.renderDatas, v => v.page === page)
+      remove(this.renderDatas, (v) => v.page === page)
     },
     /**
      * 移除所有渲染数据。
@@ -80,11 +80,14 @@ export const useRenderStore = defineStore('render', {
       this.selectedRenderData.model = renderData.model
       this.selectedRenderData.renderingType = renderData.renderingType
       this.selectedRenderData.feature = renderData.feature
-      this.selectedRenderData.featureInfoListItems = renderData.featureInfoListItems
+      this.selectedRenderData.featureInfoListItems =
+        renderData.featureInfoListItems
       if (clearRestoreHandlers) {
         this.selectedRenderData.restoreHandlers = []
       } else {
-        this.selectedRenderData.restoreHandlers.push(...renderData.restoreHandlers)
+        this.selectedRenderData.restoreHandlers.push(
+          ...renderData.restoreHandlers
+        )
       }
     },
     /**
@@ -93,9 +96,9 @@ export const useRenderStore = defineStore('render', {
      * @returns
      */
     getRenderDataByDatasetId(id) {
-      return find(this.renderDatas, v => v.id === id)
-    }
-  }
+      return find(this.renderDatas, (v) => v.id === id)
+    },
+  },
 })
 
 if (import.meta.hot) {

@@ -101,7 +101,9 @@ export interface VcDataset {
 }
 
 // eslint-disable-next-line @typescript-eslint/member-delimiter-style
-export type VcCesiumDemoObject = VcCesiumObject & { datasetId?: string | number }
+export type VcCesiumDemoObject = VcCesiumObject & {
+  datasetId?: string | number
+}
 
 export type VcDatasetGetMethod = () => Promise<{
   code: number

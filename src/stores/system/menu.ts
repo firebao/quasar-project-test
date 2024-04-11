@@ -13,7 +13,7 @@ export const useMenuStore = defineStore('menu', {
       asideCollapse: setting.menu.asideCollapse,
       // 侧边栏折叠动画
       asideTransition: setting.menu.asideTransition,
-      moduleHeader: []
+      moduleHeader: [],
     }
   },
   getters: {
@@ -35,7 +35,7 @@ export const useMenuStore = defineStore('menu', {
         dbName: 'sys',
         path: 'menu.asideCollapse',
         value: String(this.asideCollapse),
-        user: true
+        user: true,
       })
     },
     /**
@@ -50,7 +50,7 @@ export const useMenuStore = defineStore('menu', {
         dbName: 'sys',
         path: 'menu.asideCollapse',
         value: String(this.asideCollapse),
-        user: true
+        user: true,
       })
     },
     /**
@@ -66,7 +66,7 @@ export const useMenuStore = defineStore('menu', {
         dbName: 'sys',
         path: 'menu.asideTransition',
         value: String(this.asideTransition),
-        user: true
+        user: true,
       })
     },
     /**
@@ -81,7 +81,7 @@ export const useMenuStore = defineStore('menu', {
         dbName: 'sys',
         path: 'menu.asideTransition',
         value: String(this.asideTransition),
-        user: true
+        user: true,
       })
     },
     /**
@@ -94,7 +94,7 @@ export const useMenuStore = defineStore('menu', {
         dbName: 'sys',
         path: 'menu',
         defaultValue: String(setting.menu),
-        user: true
+        user: true,
       })
       // state.asideCollapse = menu.asideCollapse !== undefined ? menu.asideCollapse : setting.menu.asideCollapse
       // state.asideTransition = menu.asideTransition !== undefined ? menu.asideTransition : setting.menu.asideTransition
@@ -122,8 +122,8 @@ export const useMenuStore = defineStore('menu', {
     },
     moduleHeaderSet(menu) {
       this.moduleHeader = menu
-    }
-  }
+    },
+  },
 })
 
 if (import.meta.hot) {

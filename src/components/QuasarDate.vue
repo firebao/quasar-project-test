@@ -22,20 +22,20 @@
 </template>
 
 <script lang="ts">
-import type { QDialog } from 'quasar';
-import type { Ref } from 'vue';
-import { defineComponent, ref } from 'vue';
+import type { QDialog } from 'quasar'
+import type { Ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'QuasarDate',
   setup() {
-    const date = ref('');
-    const dateDialogRef = ref() as Ref<QDialog>;
+    const date = ref('')
+    const dateDialogRef = ref() as Ref<QDialog>
 
     return {
       date,
       dateDialogRef,
-    };
+    }
   },
-});
+})
 </script>

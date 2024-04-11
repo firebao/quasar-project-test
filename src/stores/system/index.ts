@@ -2,23 +2,23 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-03-25 16:17:01
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-03-26 12:45:41
+ * @LastEditTime : 2024-04-07 11:20:12
  * @Description  :
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
  */
 import { Pinia } from 'pinia'
-import { useAccountStore } from './account'
-import { useDBStore } from './db'
-import { useGrayStore } from './gray'
-import { useLayoutStore } from './layout'
-import { useLogStore } from './log'
-import { useMenuStore } from './menu'
-import { usePermissionStore } from './permission'
-import { useSearchStore } from './search'
-import { useThemeStore } from './theme'
-import { useTransitionStore } from './transition'
-import { useUserStore } from './user'
+import { useAccountStore } from './account.js'
+import { useDBStore } from './db.js'
+import { useGrayStore } from './gray.js'
+import { useLayoutStore } from './layout.js'
+import { useLogStore } from './log.js'
+import { useMenuStore } from './menu.js'
+import { usePermissionStore } from './permission.js'
+import { useSearchStore } from './search.js'
+import { useThemeStore } from './theme.js'
+import { useTransitionStore } from './transition.js'
+import { useUserStore } from './user.js'
 
 // 组件内使用不需要传pinia，组件外使用需要传pinia
 export const systemStore = {

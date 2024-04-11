@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'QuasarTooltip',
@@ -28,5 +28,5 @@ export default defineComponent({
   },
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   emits: { 'update:modelValue': (payload: string) => payload !== undefined },
-});
+})
 </script>

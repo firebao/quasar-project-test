@@ -16,10 +16,10 @@ export const useSearchStore = defineStore('search', {
       // 快捷键
       hotkey: {
         open: setting.hotkey.search.open,
-        close: setting.hotkey.search.close
+        close: setting.hotkey.search.close,
       },
       // 所有可以搜索的页面
-      pool: []
+      pool: [],
     }
   },
   actions: {
@@ -46,21 +46,21 @@ export const useSearchStore = defineStore('search', {
     init(menu) {
       const pool = []
       const push = function (menu, titlePrefix = []) {
-        menu.forEach(m => {
+        menu.forEach((m) => {
           if (m.children) {
             push(m.children, [...titlePrefix, m.title])
           } else {
             pool.push({
               ...m,
-              fullTitle: [...titlePrefix, m.title].join(' / ')
+              fullTitle: [...titlePrefix, m.title].join(' / '),
             })
           }
         })
       }
       push(menu)
       this.pool = pool
-    }
-  }
+    },
+  },
 })
 
 if (import.meta.hot) {
