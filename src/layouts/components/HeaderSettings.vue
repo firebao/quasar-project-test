@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-03-21 17:51:13
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-04-07 17:59:51
+ * @LastEditTime : 2024-04-12 16:12:09
  * @Description  : 主题控制按钮
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -62,7 +62,7 @@
             <q-icon name="fa fa-layer-group"></q-icon>
           </q-item-section>
           <q-item-section>
-            <q-item-label>图层管理</q-item-label>
+            <q-item-label>地图设置</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>

@@ -8,7 +8,7 @@
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
 -->
 <template>
-  <q-btn flat round size="12px" icon="fa fa-user-gear">
+  <q-btn flat round size="12px" icon="fa fa-user-gear" data-test="btn">
     <q-menu>
       <div
         class="row no-wrap q-pa-md"
