@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-03-21 17:54:29
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-04-11 18:53:24
+ * @LastEditTime : 2024-04-18 14:39:04
  * @Description  : 主题列表
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -50,6 +50,7 @@
 import { ref, computed } from 'vue'
 import { stores } from 'src/stores/index.js'
 import { useTheme } from 'src/hooks/useTheme.js'
+import { setCssVar } from 'quasar'
 
 type Columns = {
   id: string
@@ -68,10 +69,11 @@ const rows = computed(() => {
   return stores.system.useThemeStore().list
 })
 
-const { activeName, theme } = useTheme()
+const { theme, activeName } = useTheme()
 
-const handleSelectTheme = (name: string) => {
-  stores.system.useThemeStore().set(name)
+const handleSelectTheme = async (name: string) => {
+  await stores.system.useThemeStore().set(name)
+  setCssVar('primary', theme.value.global.themeColor as string)
 }
 </script>
 

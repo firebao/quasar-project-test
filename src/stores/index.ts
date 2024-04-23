@@ -38,7 +38,7 @@ export const stores = {
   system: {
     ...systemStore,
   },
-  //   viewer: {
-  //     ...viewerStore,
-  //   },
+  viewer: {
+    ...viewerStore,
+  },
 }

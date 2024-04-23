@@ -2,12 +2,14 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-03-25 16:24:28
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-03-29 15:48:20
- * @Description  :
+ * @LastEditTime : 2024-04-15 17:12:47
+ * @Description  : 主题类型
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
  */
 export interface GlobalTheme {
+  themeSettingPanelBgColor?: string
+  themeCardBgColor?: string
   themeBGColor?: string
   themeBGMaskColor?: string
   themeColor?: string

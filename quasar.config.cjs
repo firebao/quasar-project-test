@@ -12,6 +12,7 @@
 const { configure } = require('quasar/wrappers')
 const { resolve } = require('path')
 const packageJson = require('./package.json')
+// const VueDevTools = require('vite-plugin-vue-devtools')
 
 module.exports = configure(async (/* ctx */) => {
   // console.log('Quasar 配置上下文', ctx)
@@ -253,6 +254,7 @@ module.exports = configure(async (/* ctx */) => {
        */
       extendViteConf(viteConf) {
         viteConf.plugins.push(mars3dPlugin())
+        // viteConf.plugins.push(VueDevTools())
         viteConf.define = {
           __APP_VERSION__: JSON.stringify(packageJson.version),
           'process.env': {},

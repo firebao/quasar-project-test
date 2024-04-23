@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-04-07 17:43:29
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-04-12 11:15:20
+ * @LastEditTime : 2024-04-12 16:53:01
  * @Description  : HeaderSettings组件测试
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -22,7 +22,7 @@ import {
 installQuasarPlugin()
 
 describe('HeaderSettings组件单元测试', () => {
-  let wrapper
+  let wrapper: any
 
   beforeEach(async () => {
     const testPinia = createTestingPinia({

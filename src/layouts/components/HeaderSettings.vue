@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-03-21 17:51:13
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-04-12 16:12:09
+ * @LastEditTime : 2024-04-15 09:47:44
  * @Description  : 主题控制按钮
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -56,7 +56,7 @@
           clickable
           v-close-popup
           data-test="layer"
-          @click="isLayerDialogShow = true"
+          @click="isMapSettingsDialogShow = true"
         >
           <q-item-section avatar>
             <q-icon name="fa fa-layer-group"></q-icon>
@@ -70,7 +70,7 @@
   </div>
   <theme-manager v-model="isThemeDialogShow" />
   <log-manager v-model="isLogDialogShow" />
-  <layer-manager v-model="isLayerDialogShow" />
+  <layer-manager v-model="isMapSettingsDialogShow" />
 </template>
 
 <script lang="ts" setup>
@@ -82,6 +82,6 @@ import { useTheme } from 'src/hooks/useTheme.js'
 
 const isThemeDialogShow = ref(false)
 const isLogDialogShow = ref(false)
-const isLayerDialogShow = ref(false)
+const isMapSettingsDialogShow = ref(false)
 const { theme } = useTheme()
 </script>

@@ -1,19 +1,22 @@
 /*
- * @Author: tanghuang-liu 916650458@qq.com
- * @Date: 2022-05-16 09:21:24
- * @LastEditors: zouyaoji
- * @LastEditTime: 2022-05-26 13:49:30
- * @FilePath: \vue-cesium-demo\src\store\viewer\index.ts
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @Author       : wwj 318348750@qq.com
+ * @Date         : 2024-03-25 16:17:06
+ * @LastEditors  : wwj 318348750@qq.com
+ * @LastEditTime : 2024-04-18 16:02:51
+ * @Description  : 地图view设置
+ *
+ * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
  */
 import { Pinia } from 'pinia'
-import { useLayerStore } from './layer'
-import { useOverlayStore } from './overlay'
-import { useRenderStore } from './render'
+import { useSceneStore } from './scene.js'
+import { useLayerStore } from './layer.js'
+import { useOverlayStore } from './overlay.js'
+import { useRenderStore } from './render.js'
 
 // 组件内使用不需要传pinia，组件外使用需要传pinia
 export const viewerStore = {
-  useLayerStore: (pinia?: Pinia) => useLayerStore(pinia),
-  useOverlayStore: (pinia?: Pinia) => useOverlayStore(pinia),
-  useRenderStore: (pinia?: Pinia) => useRenderStore(pinia),
+  useSceneStore: (pinia?: Pinia) => useSceneStore(pinia),
+  // useLayerStore: (pinia?: Pinia) => useLayerStore(pinia),
+  // useOverlayStore: (pinia?: Pinia) => useOverlayStore(pinia),
+  // useRenderStore: (pinia?: Pinia) => useRenderStore(pinia),
 }

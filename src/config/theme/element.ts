@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-03-25 16:23:50
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-04-07 15:10:23
+ * @LastEditTime : 2024-04-18 15:32:19
  * @Description  : 酷炫科技蓝主题
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -13,6 +13,8 @@ export const themeElement = {
    */
   themeName: 'element',
   global: {
+    themeSettingPanelBgColor: 'rgba(77, 208, 225, 0.3)',
+    themeCardBgColor: 'rgba(18, 199, 255, 0.3)',
     themeBGColor: '#314255',
     themeBGMaskColor: 'rgba(0, 0, 0, 0)',
     themeColor: '#2196f3',
