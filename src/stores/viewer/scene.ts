@@ -2,14 +2,18 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-04-18 08:57:24
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-04-19 14:07:36
+ * @LastEditTime : 2024-04-24 14:15:23
  * @Description  : 地图地球设置
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
  */
 import { defineStore, acceptHMRUpdate } from 'pinia'
 import { useDBStore } from '../system/db.js'
-import { GlobeSetting, TerrainSetting } from 'src/types/globe.js'
+import {
+  ControlSetting,
+  GlobeSetting,
+  TerrainSetting,
+} from 'src/types/globe.js'
 import { defaultMapSettings } from 'src/config/map/defaultMapSettings.js'
 
 export const useSceneStore = defineStore('scene', {
@@ -18,7 +22,8 @@ export const useSceneStore = defineStore('scene', {
       scene: {
         globe: defaultMapSettings.scene.globe,
       },
-      terrain: defaultMapSettings.terrain,
+      terrain: defaultMapSettings.terrain as TerrainSetting,
+      control: defaultMapSettings.control as ControlSetting,
     },
   }),
   getters: {},
@@ -46,6 +51,17 @@ export const useSceneStore = defineStore('scene', {
      */
     async setTerrain(terrainSetting: TerrainSetting): Promise<void> {
       this.sceneSetting.terrain = terrainSetting
+      const dbStore = useDBStore()
+      dbStore.set({
+        dbName: 'viewer',
+        path: 'scene.settings',
+        value: this.sceneSetting,
+        user: true,
+      })
+    },
+
+    async setControl(controlSetting: ControlSetting): Promise<void> {
+      this.sceneSetting.control = controlSetting
       const dbStore = useDBStore()
       dbStore.set({
         dbName: 'viewer',

@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-04-18 15:35:08
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-04-19 09:12:36
+ * @LastEditTime : 2024-04-24 09:33:55
  * @Description  : 地形设置表单
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -173,11 +173,12 @@
 <script setup lang="ts">
 import { watch } from 'vue'
 import { stores } from 'src/stores/index.js'
+import { TerrainSetting } from 'src/types/globe.js'
 
 const store = stores.viewer.useSceneStore()
 const form = store.sceneSetting.terrain
 
-watch(form, (val) => {
+watch(form, (val: TerrainSetting) => {
   store.setTerrain(val)
 })
 </script>

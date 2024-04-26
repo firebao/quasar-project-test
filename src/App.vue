@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-03-19 10:44:36
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-04-18 16:38:09
+ * @LastEditTime : 2024-04-24 15:13:51
  * @Description  :
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -22,5 +22,17 @@ setCssVar('primary', theme.value.global.themeColor as string)
 <style lang="scss">
 :root {
   --q-primary: v-bind('theme.global.themeColor') !important;
+}
+// 更改cesium-viewer-toolbar的初始位置
+.cesium-viewer-toolbar {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  top: 75px !important;
+  left: 6px !important;
+}
+.cesium-baseLayerPicker-dropDown {
+  top: 50px !important;
+  left: 6px !important;
 }
 </style>

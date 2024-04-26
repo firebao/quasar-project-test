@@ -1,8 +1,10 @@
+import { HomeButton } from 'mars3d-cesium'
+
 /*
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-04-18 09:29:26
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-04-19 14:06:53
+ * @LastEditTime : 2024-04-24 17:12:43
  * @Description  : 地图Globe设置类型
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -26,7 +28,7 @@ export interface GlobeSetting {
 
 export interface TerrainSetting {
   // 地形类型
-  type: 'NONE' | 'XYZ' | 'ARCGIS' | 'ION' | 'GEE' | 'VR'
+  type: string
   // 地形服务地址
   url: string
   // 是否启用显示地形
@@ -45,4 +47,43 @@ export interface TerrainSetting {
   uplift: boolean
   // 是否默认启用地形区域材质(淹没，等高线)
   flood: boolean
+}
+
+export interface ControlSetting {
+  homeButton: boolean
+  zoom: boolean
+  sceneModePicker: boolean
+  projectionPicker: boolean
+  fullscreenButton: boolean
+  vrButton: boolean
+  geocoder: boolean
+  navigationHelpButton: boolean
+  navigationInstructionsInitiallyVisible: boolean
+  baseLayerPicker: boolean
+  compass: boolean
+  locationBar: boolean
+  distanceLegend: boolean
+  clockAnimate: boolean
+  animation: boolean
+  timeline: boolean
+  overViewMap: boolean
+  mapSplit: boolean
+  keyboardRoam: boolean
+  mouseDownView: boolean
+  infoBox: boolean
+  selectionIndicator: boolean
+  showRenderLoopErrors: boolean
+  contextmenu: boolean
+  popup: boolean
+  tooltip: boolean
+}
+
+interface HomeButtonOptions {
+  title?: string
+  icon?: string
+  id?: string | number
+  enabled?: boolean
+  parentContainer?: HTMLElement
+  insertIndex?: number
+  insertBefore?: HTMLElement | string
 }
