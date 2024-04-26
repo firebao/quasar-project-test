@@ -1,0 +1,15 @@
+###
+ # @Author       : wwj 318348750@qq.com
+ # @Date         : 2024-04-26 15:30:03
+ # @LastEditors  : wwj 318348750@qq.com
+ # @LastEditTime : 2024-04-26 16:24:02
+ # @Description  : git pre-commit hooks sh脚本
+ #
+ # Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
+###
+#!/bin/sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "--------------代码正在Eslint格式化-----------------"
+npx lint-staged
+echo "--------------代码格式化完成-----------------"

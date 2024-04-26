@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-04-24 09:59:07
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-04-25 10:21:09
+ * @LastEditTime : 2024-04-26 16:41:57
  * @Description  : 控件设置表单
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -512,13 +512,12 @@
 </template>
 <script lang="ts" setup>
 import { defaultMapSettings } from 'src/config/map/defaultMapSettings.js'
-import { watch } from 'vue'
+import { watch, ref } from 'vue'
 import { stores } from 'src/stores/index.js'
 
 const store = stores.viewer.useSceneStore()
 const formStore = store.sceneSetting.control
-const
-const form = store.sceneSetting.control
+const form = ref(formStore)
 
 watch(form, (val) => {
   store.setControl(val)
