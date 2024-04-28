@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2023-08-14 18:25:20
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-04-28 08:42:22
+ * @LastEditTime : 2024-04-28 08:48:32
  * @Description  : commitlint配置文件
  *
  * Copyright (c) 2023 by sjft, All Rights Reserved.
@@ -12,25 +12,6 @@ const path = require('path')
 
 // git commit -m"特性11(some): some "
 
-/**
- * @param {*} context
- * @returns
- */
-function getPackages(context) {
-  return Promise.resolve()
-    .then(() => {
-      const srcDir = path.resolve(__dirname, './src')
-      const srcDirs = fs.readdirSync(srcDir).filter((dir) => !dir.includes('.'))
-      const pagesDir = path.resolve(__dirname, './src/pages')
-      const pageDirs = fs
-        .readdirSync(pagesDir)
-        .filter((dir) => !dir.includes('.'))
-      return Promise.resolve([...srcDirs, ...pageDirs])
-    })
-    .then((a) => {
-      return a
-    })
-}
 module.exports = {
   extends: ['@commitlint/config-conventional'],
   parserPreset: {
