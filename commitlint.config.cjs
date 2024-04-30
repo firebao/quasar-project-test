@@ -2,14 +2,11 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2023-08-14 18:25:20
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-04-28 08:48:32
+ * @LastEditTime : 2024-04-28 09:02:52
  * @Description  : commitlint配置文件
  *
  * Copyright (c) 2023 by sjft, All Rights Reserved.
  */
-const fs = require('fs')
-const path = require('path')
-
 // git commit -m"特性11(some): some "
 
 module.exports = {

@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-03-27 14:59:36
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-03-27 15:25:32
+ * @LastEditTime : 2024-04-29 15:45:29
  * @Description  : vitest单元测试配置
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.

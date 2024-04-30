@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-04-18 09:39:33
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-04-24 17:27:59
+ * @LastEditTime : 2024-04-29 15:37:31
  * @Description  : 默认的地球设置
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -36,11 +36,11 @@ export const defaultMapSettings = {
   ],
   scene: {
     center: {
-      lat: 35.681354,
-      lng: 104.226478,
-      alt: 9862844.9,
-      heading: 349.7,
-      pitch: -88.8,
+      lat: 37.720758,
+      lng: 100.706864,
+      alt: 2388704.7,
+      heading: 355.9,
+      pitch: -89.7,
     },
     globe: {
       show: true,
