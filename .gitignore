@@ -1,5 +1,6 @@
 .DS_Store
 .thumbs.db
+.eslintcache
 node_modules
 
 # Quasar core related directories
