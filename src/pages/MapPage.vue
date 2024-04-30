@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-03-19 16:05:05
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-04-29 15:53:04
+ * @LastEditTime : 2024-04-30 16:41:26
  * @Description  :
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -46,6 +46,7 @@ const startAnimation = () => {
   map.openFlyAnimation({
     callback: () => {
       addGansuJsonLayer()
+      addSiteWmsLayer()
     },
   })
 }
@@ -72,6 +73,22 @@ const addGansuJsonLayer = () => {
     },
   })
   map.addLayer(gansuGeoJsonLayer)
+}
+
+const addSiteWmsLayer = () => {
+  const siteLayer = new mars3d.layer.WmsLayer({
+    url: 'http://localhost:8080/geoserver/wms',
+    layers: 'tms:site',
+    parameters: {
+      transparent: true,
+      format: 'image/png',
+    },
+    getFeatureInfoParameters: {
+      feature_count: 10,
+    },
+    popup: 'all',
+  })
+  map.addLayer(siteLayer)
 }
 </script>
 <style lang="scss" scoped>
