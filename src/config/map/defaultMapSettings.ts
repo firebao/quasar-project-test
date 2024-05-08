@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-04-18 09:39:33
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-05-07 17:33:52
+ * @LastEditTime : 2024-05-08 11:20:52
  * @Description  : 默认的地球设置
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -70,7 +70,7 @@ export const defaultMapSettings = {
     sceneModePicker: true,
     projectionPicker: true,
     fullscreenButton: true,
-    vrButton: true,
+    vrButton: false,
     geocoder: true,
     navigationHelpButton: true,
     navigationInstructionsInitiallyVisible: false,

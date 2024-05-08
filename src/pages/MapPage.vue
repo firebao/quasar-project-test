@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-03-19 16:05:05
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-05-07 17:32:09
+ * @LastEditTime : 2024-05-08 18:13:52
  * @Description  :
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -48,6 +48,7 @@ const startAnimation = () => {
     callback: () => {
       addGansuJsonLayer()
       addSiteWmsLayer()
+      //addFiberWmsLayer()
     },
   })
 }
@@ -63,7 +64,7 @@ const addGansuJsonLayer = () => {
       styleOptions: {
         fill: true,
         color: 'rgb(2,26,79)',
-        opacity: 0.9,
+        opacity: 0.6,
         outline: true,
         outlineColor: '#39E09B',
         outlineWidth: 4,
@@ -83,18 +84,21 @@ const addGansuJsonLayer = () => {
 const addSiteWmsLayer = () => {
   const siteLayer = new mars3d.layer.WmsLayer({
     url: 'http://localhost:8080/geoserver/wms',
-    layers: 'tms:tms_site_grade',
+    subdomains: ['a', 'b', 'c'],
+    layers: 'tms:tms_fiber_grade,tms:tms_site_grade',
     crs: mars3d.CRS.EPSG3857,
     parameters: {
       transparent: true,
       format: 'image/png',
+      version: '1.1.1',
     },
+    featureIndex: 'end',
     getFeatureInfoParameters: {
       feature_count: 10,
     },
     popup: 'all',
-    tileWidth: 1024,
-    tileHeight: 1024,
+    tileWidth: 256,
+    tileHeight: 256,
   })
   map.addLayer(siteLayer)
 }
