@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-03-25 16:23:50
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-04-15 19:02:02
+ * @LastEditTime : 2024-05-09 11:30:00
  * @Description  : 经典国网绿主题
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -22,11 +22,11 @@ export const themeClassic = {
     themeColorActive: 'teal',
     themeScrollTopBackgroundColor: 'rgba(0, 0, 0, 0)',
     themeQInputColor: '#fff',
-    themeQInputBorderColor: '#fff9',
+    themeQInputBorderColor: '#fff999',
     themeQCheckboxTruthyColor: '#1976d2',
     themeQMenuColor: '#fff',
     themeQMenuBackgroundColor: 'rgba(0, 68, 82, 0.6)',
-    themeQCardColor: 'teal',
+    themeQCardColor: '#009688',
     themeQCardHeaderBackgroundColor: 'rgba(0, 101, 122, 0.5)',
     themeQCardBackgroundColor: 'rgba(0, 68, 82, 0.6)',
     themeQScrollAreaColor: '#fff',

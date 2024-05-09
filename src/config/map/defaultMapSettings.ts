@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-04-18 09:39:33
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-05-08 11:20:52
+ * @LastEditTime : 2024-05-09 09:47:39
  * @Description  : 默认的地球设置
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -72,7 +72,9 @@ export const defaultMapSettings = {
     fullscreenButton: true,
     vrButton: false,
     geocoder: true,
-    navigationHelpButton: true,
+    navigationHelpButton: {
+      icon: 'fa fa-circle-question',
+    },
     navigationInstructionsInitiallyVisible: false,
     baseLayerPicker: true,
     compass: {
