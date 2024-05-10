@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-03-19 16:05:05
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-05-09 11:46:44
+ * @LastEditTime : 2024-05-10 16:40:48
  * @Description  :
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -11,29 +11,39 @@
   <q-page no-padding>
     <div id="mars3dContainer" class="mars3d-container"></div>
   </q-page>
+  <site-fiber-filter-modal
+    v-model="uniquenessPanel.siteAndFiberFilterPanel"
+    class="filter-wrapper"
+  />
 </template>
 
 <script setup lang="ts">
 import 'mars3d-cesium/Build/Cesium/Widgets/widgets.css'
 import 'mars3d/dist/mars3d.css'
 import * as mars3d from 'mars3d'
-
 import 'mars3d-space'
-import { watch, onMounted } from 'vue'
+import SiteFiberFilterModal from 'src/components/SiteFiberFilterModal.vue'
+import { watch, onMounted, ref } from 'vue'
 import { stores } from 'src/stores/index.js'
 import { defaultMapSettings } from 'src/config/map/defaultMapSettings.js'
 import ChinaGeoJson from 'src/assets/data/geojson/gansu.json'
 import { Cesium } from 'mars3d'
 import { useTheme } from 'src/hooks/useTheme.js'
+import { usePanel } from 'src/hooks/usePanel.js'
 
 let map: any
 const store = stores.viewer.useSceneStore()
 const { theme, activeName } = useTheme()
+const { uniquenessPanel, setFilterStatus } = usePanel()
 
 watch(store.sceneSetting, (val) => {
   map && map.setOptions(val)
 })
 
+/**
+ * @description: 这里追踪activeName是要重新渲染legendPanel，不然主题改变，legendPanel不会改变
+ * @return {*}
+ */
 watch(activeName, () => {
   destroyLegendPanel()
   createLegendPanel()
@@ -47,6 +57,7 @@ onMounted(() => {
     startAnimation()
     // 添加Legend控件
     createLegendBtn()
+    createFilterBtn()
     createLegendPanel()
   })
 })
@@ -60,6 +71,7 @@ const startAnimation = () => {
   map.openFlyAnimation({
     callback: () => {
       addGansuJsonLayer()
+      addFiberWmsLayer()
       addSiteWmsLayer()
     },
   })
@@ -96,19 +108,21 @@ const addGansuJsonLayer = () => {
  */
 const addSiteWmsLayer = () => {
   const siteLayer = new mars3d.layer.WmsLayer({
-    url: 'http://localhost:8080/geoserver/wms',
+    url: 'http://localhost:8080/geoserver/tms/wms',
     subdomains: ['a', 'b', 'c'],
-    layers: 'tms:tms_fiber_grade,tms:tms_site_grade',
+    layers: 'tms:tms_site',
     crs: mars3d.CRS.EPSG3857,
     parameters: {
       transparent: true,
       format: 'image/png',
       version: '1.1.1',
+      //cql_filter: "voltage_type = '750kV变电站'",
     },
-    featureIndex: 'end',
+    featureIndex: 0,
     getFeatureInfoParameters: {
       feature_count: 10,
     },
+    zIndex: 2,
     popup: 'all',
     tileWidth: 256,
     tileHeight: 256,
@@ -117,7 +131,34 @@ const addSiteWmsLayer = () => {
 }
 
 /**
- * @description: 添加图例面板
+ * @description: 添加wms线路图层
+ * @return {*}
+ */
+const addFiberWmsLayer = () => {
+  const fiberLayer = new mars3d.layer.WmsLayer({
+    url: 'http://localhost:8080/geoserver/tms/wms',
+    subdomains: ['a', 'b', 'c'],
+    layers: 'tms:tms_fiber_grade',
+    crs: mars3d.CRS.EPSG3857,
+    parameters: {
+      transparent: true,
+      format: 'image/png',
+      version: '1.1.1',
+    },
+    zIndex: 1,
+    // featureIndex: 'end',
+    getFeatureInfoParameters: {
+      feature_count: 10,
+    },
+    popup: 'all',
+    tileWidth: 256,
+    tileHeight: 256,
+  })
+  map.addLayer(fiberLayer)
+}
+
+/**
+ * @description: 添加图例按钮
  * @return {*}
  */
 const createLegendBtn = async () => {
@@ -146,6 +187,39 @@ const createLegendBtn = async () => {
     },
   })
   map.addControl(legendButton)
+}
+
+/**
+ * @description: 添加筛选按钮
+ * @return {*}
+ */
+const createFilterBtn = async () => {
+  const ToolButtonContainer = document.getElementsByClassName(
+    'cesium-viewer-toolbar'
+  )[0]
+  if (!ToolButtonContainer) {
+    throw new Error('cesium-viewer-toolbar容器不存才')
+  }
+  const filterButton = new mars3d.control.ToolButton({
+    id: 'filterButton',
+    icon: 'fa fa-filter',
+    className: 'filter-button',
+    parentContainer: ToolButtonContainer as HTMLElement,
+    click: () => {
+      const btn = document.getElementById('filterButton')
+      // const panel = document.getElementById('legendPanel')
+      //TODO: vue组件
+      if (!btn) return
+      if (btn.classList.contains('active')) {
+        btn.classList.remove('active')
+        setFilterStatus(false)
+      } else {
+        btn.classList.add('active')
+        setFilterStatus(true)
+      }
+    },
+  })
+  map.addControl(filterButton)
 }
 
 /**

@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-03-19 10:44:36
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-05-09 10:04:18
+ * @LastEditTime : 2024-05-09 14:11:09
  * @Description  :
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -40,7 +40,8 @@ setCssVar('primary', theme.value.global.themeColor as string)
   border: 1px rgba(255, 255, 255, 0.3) solid !important;
   border-radius: 5px !important;
 }
-.legend-button {
+.legend-button,
+.filter-button {
   display: grid !important;
   align-items: center;
   justify-content: center;
