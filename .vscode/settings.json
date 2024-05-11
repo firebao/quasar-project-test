@@ -21,6 +21,10 @@
     "todos",
     "tsbuildinfo",
     "vtag",
-    "whills"
+    "whills",
+    "xmax",
+    "xmin",
+    "ymax",
+    "ymin"
   ]
 }

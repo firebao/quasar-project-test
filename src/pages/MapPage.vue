@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-03-19 16:05:05
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-05-10 16:40:48
+ * @LastEditTime : 2024-05-11 15:57:45
  * @Description  :
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -14,6 +14,7 @@
   <site-fiber-filter-modal
     v-model="uniquenessPanel.siteAndFiberFilterPanel"
     class="filter-wrapper"
+    @cql-change="handleCqlChange"
   />
 </template>
 
@@ -30,11 +31,65 @@ import ChinaGeoJson from 'src/assets/data/geojson/gansu.json'
 import { Cesium } from 'mars3d'
 import { useTheme } from 'src/hooks/useTheme.js'
 import { usePanel } from 'src/hooks/usePanel.js'
+import {
+  sitePanelTemplate,
+  sitePanelContent,
+} from 'src/utils/template-render.js'
 
 let map: any
 const store = stores.viewer.useSceneStore()
 const { theme, activeName } = useTheme()
 const { uniquenessPanel, setFilterStatus } = usePanel()
+let siteLayer: any, fiberLayer: any
+const siteLayerOptions = {
+  url: 'http://localhost:8080/geoserver/tms/wms',
+  subdomains: ['a', 'b', 'c'],
+  layers: 'tms:tms_site',
+  crs: mars3d.CRS.EPSG3857,
+
+  parameters: {
+    transparent: true,
+    format: 'image/png',
+    version: '1.1.1',
+    cql_filter: '',
+    time: new Date().getTime(),
+  },
+  featureIndex: 0,
+  rectangle: {
+    xmin: 92.16090393066406,
+    xmax: 108.64656829833984,
+    ymin: 32.63811111450195,
+    ymax: 43.21143341064453,
+  },
+  getFeatureInfoParameters: {
+    feature_count: 10,
+  },
+  zIndex: 2,
+  // popup: 'all',
+  tileWidth: 256,
+  tileHeight: 256,
+}
+
+const fiberLayerOptions = {
+  url: 'http://localhost:8080/geoserver/tms/wms',
+  subdomains: ['a', 'b', 'c'],
+  layers: 'tms:tms_fiber_grade',
+  crs: mars3d.CRS.EPSG3857,
+  parameters: {
+    transparent: true,
+    format: 'image/png',
+    version: '1.1.1',
+    cql_filter: '',
+    time: new Date().getTime(),
+  },
+  zIndex: 1,
+  getFeatureInfoParameters: {
+    feature_count: 10,
+  },
+  popup: 'all',
+  tileWidth: 256,
+  tileHeight: 256,
+}
 
 watch(store.sceneSetting, (val) => {
   map && map.setOptions(val)
@@ -107,27 +162,18 @@ const addGansuJsonLayer = () => {
  * @return {*}
  */
 const addSiteWmsLayer = () => {
-  const siteLayer = new mars3d.layer.WmsLayer({
-    url: 'http://localhost:8080/geoserver/tms/wms',
-    subdomains: ['a', 'b', 'c'],
-    layers: 'tms:tms_site',
-    crs: mars3d.CRS.EPSG3857,
-    parameters: {
-      transparent: true,
-      format: 'image/png',
-      version: '1.1.1',
-      //cql_filter: "voltage_type = '750kV变电站'",
-    },
-    featureIndex: 0,
-    getFeatureInfoParameters: {
-      feature_count: 10,
-    },
-    zIndex: 2,
-    popup: 'all',
-    tileWidth: 256,
-    tileHeight: 256,
-  })
+  siteLayer && map.removeLayer(siteLayer)
+  siteLayer = new mars3d.layer.WmsLayer(siteLayerOptions)
   map.addLayer(siteLayer)
+  siteLayer.bindPopup(sitePanelContent, sitePanelTemplate)
+  siteLayer.on(mars3d.EventType.popupOpen, (event: any) => {
+    const container = event.container
+    console.log('图层上打开了popup', container)
+  })
+  siteLayer.on(mars3d.EventType.popupClose, (event: any) => {
+    const container = event.container
+    console.log('图层上移除了popup', container)
+  })
 }
 
 /**
@@ -135,25 +181,8 @@ const addSiteWmsLayer = () => {
  * @return {*}
  */
 const addFiberWmsLayer = () => {
-  const fiberLayer = new mars3d.layer.WmsLayer({
-    url: 'http://localhost:8080/geoserver/tms/wms',
-    subdomains: ['a', 'b', 'c'],
-    layers: 'tms:tms_fiber_grade',
-    crs: mars3d.CRS.EPSG3857,
-    parameters: {
-      transparent: true,
-      format: 'image/png',
-      version: '1.1.1',
-    },
-    zIndex: 1,
-    // featureIndex: 'end',
-    getFeatureInfoParameters: {
-      feature_count: 10,
-    },
-    popup: 'all',
-    tileWidth: 256,
-    tileHeight: 256,
-  })
+  fiberLayer && map.removeLayer(fiberLayer)
+  fiberLayer = new mars3d.layer.WmsLayer(fiberLayerOptions)
   map.addLayer(fiberLayer)
 }
 
@@ -227,7 +256,10 @@ const createFilterBtn = async () => {
  * @return {*}
  */
 const createLegendPanel = () => {
-  const legendPanel = document.createElement('div')
+  let legendPanel: any
+  legendPanel = document.getElementById('legendPanel')
+  if (legendPanel) return
+  legendPanel = document.createElement('div')
   legendPanel.id = 'legendPanel'
   legendPanel.style.position = 'absolute'
   legendPanel.style.top = '120px'
@@ -282,6 +314,27 @@ const destroyLegendPanel = () => {
   }
   const panel = document.getElementById('legendPanel')
   panel && panel.parentNode?.removeChild(panel)
+}
+
+/**
+ * @description: 站点cql筛选条件变动
+ * @return {*}
+ */
+const handleCqlChange = (val: any) => {
+  if (!siteLayer || !fiberLayer) return
+  siteLayerOptions.parameters.cql_filter = val.siteCqlStr
+  siteLayerOptions.parameters.time = new Date().getTime()
+  siteLayer.remove(true)
+  addSiteWmsLayer()
+  // siteLayer = new mars3d.layer.WmsLayer(siteLayerOptions)
+  // map.addLayer(siteLayer)
+
+  fiberLayerOptions.parameters.cql_filter = val.fiberCqlStr
+  fiberLayerOptions.parameters.time = new Date().getTime()
+  fiberLayer.remove(true)
+  addFiberWmsLayer()
+  // fiberLayer = new mars3d.layer.WmsLayer(fiberLayerOptions)
+  // map.addLayer(fiberLayer)
 }
 </script>
 

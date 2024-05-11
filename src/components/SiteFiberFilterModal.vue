@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-05-09 14:17:53
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-05-10 16:46:32
+ * @LastEditTime : 2024-05-11 09:08:34
  * @Description  :
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -53,63 +53,86 @@
           </q-option-group>
         </div>
       </q-card-section>
+      <q-separator />
+      <q-card-section class="float-right">
+        <q-btn color="primary" class="q-mr-md" @click="handleCqlChange"
+          >确定</q-btn
+        >
+        <q-btn>取消</q-btn>
+      </q-card-section>
     </q-card>
   </q-dialog>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { useTheme } from 'src/hooks/useTheme.js'
 
 const model = defineModel()
 const { theme } = useTheme()
+const emit = defineEmits<{
+  (e: 'cql-change', { siteCqlStr, fiberCqlStr }: any): void
+}>()
+
 const siteList = ref([
-  { label: '750kV变电站', value: "[voltage_type] = '750kV变电站'" },
-  { label: '330kV变电站', value: "[voltage_type] = '330kV变电站'" },
-  { label: '330kV牵引变', value: "[voltage_type] = '330kV牵引变'" },
-  { label: '330kV升压站', value: "[voltage_type] = '330kV升压站'" },
-  { label: '220kV变电站', value: "[voltage_type] = '220kV变电站'" },
-  { label: '110kV变电站', value: "[voltage_type] = '110kV变电站'" },
-  { label: '110kV牵引变', value: "[voltage_type] = '110kV牵引变'" },
-  { label: '110kV升压站', value: "[voltage_type] = '110kV升压站'" },
-  { label: '省调', value: "[voltage_type] = '省调'" },
-  { label: '地调', value: "[voltage_type] = '地调'" },
-  { label: '换流站', value: "[voltage_type] = '换流站'" },
-  { label: '水电站', value: "[voltage_type] = '水电站'" },
-  { label: '火电站', value: "[voltage_type] = '火电站'" },
+  { label: '750kV变电站', value: "voltage_type = '750kV变电站'" },
+  { label: '330kV变电站', value: "voltage_type = '330kV变电站'" },
+  { label: '330kV牵引变', value: "voltage_type = '330kV牵引变'" },
+  { label: '330kV升压站', value: "voltage_type = '330kV升压站'" },
+  { label: '220kV变电站', value: "voltage_type = '220kV变电站'" },
+  { label: '110kV变电站', value: "voltage_type = '110kV变电站'" },
+  { label: '110kV牵引变', value: "voltage_type = '110kV牵引变'" },
+  { label: '110kV升压站', value: "voltage_type = '110kV升压站'" },
+  { label: '省调', value: "voltage_type = '省调'" },
+  { label: '地调', value: "voltage_type = '地调'" },
+  { label: '换流站', value: "voltage_type = '换流站'" },
+  { label: '水电站', value: "voltage_type = '水电站'" },
+  { label: '火电站', value: "voltage_type = '火电站'" },
 ])
 
 const fiberList = ref([
-  { label: '±800kV线路', value: "[volt = '±800kV']" },
-  { label: '特高压主线路', value: "[volt = '750kV'] AND is_tgy = 'true'" },
-  { label: '750kV线路', value: "[volt = '750'] AND is_tgy = 'false'" },
-  { label: '330kV线路', value: "[volt = '330kV']" },
-  { label: '220kV线路', value: "[volt = '220kV']" },
-  { label: '110kV线路', value: "[volt = '110kV']" },
+  { label: '±800kV线路', value: "volt = '±800kV'" },
+  { label: '特高压主线路', value: "volt = '750kV' AND is_tgy = 'true'" },
+  { label: '750kV线路', value: "volt = '750' AND is_tgy = 'false'" },
+  { label: '330kV线路', value: "volt = '330kV'" },
+  { label: '220kV线路', value: "volt = '220kV'" },
+  { label: '110kV线路', value: "volt = '110kV'" },
 ])
+
 const checkSiteList = ref([
-  "[voltage_type] = '750kV变电站'",
-  "[voltage_type] = '330kV变电站'",
-  "[voltage_type] = '330kV牵引变'",
-  "[voltage_type] = '330kV升压站'",
-  "[voltage_type] = '220kV变电站'",
-  "[voltage_type] = '110kV变电站'",
-  "[voltage_type] = '110kV牵引变'",
-  "[voltage_type] = '110kV升压站'",
-  "[voltage_type] = '省调'",
-  "[voltage_type] = '地调'",
-  "[voltage_type] = '换流站'",
-  "[voltage_type] = '水电站'",
-  "[voltage_type] = '火电站'",
+  "voltage_type = '750kV变电站'",
+  "voltage_type = '330kV变电站'",
+  "voltage_type = '330kV牵引变'",
+  "voltage_type = '330kV升压站'",
+  "voltage_type = '220kV变电站'",
+  "voltage_type = '110kV变电站'",
+  "voltage_type = '110kV牵引变'",
+  "voltage_type = '110kV升压站'",
+  "voltage_type = '省调'",
+  "voltage_type = '地调'",
+  "voltage_type = '换流站'",
+  "voltage_type = '水电站'",
+  "voltage_type = '火电站'",
 ])
+
 const checkFiberList = ref([
-  "[volt = '±800kV']",
-  "[volt = '750kV'] AND is_tgy = 'true'",
-  "[volt = '750'] AND is_tgy = 'false'",
-  "[volt = '330kV']",
-  "[volt = '220kV']",
-  "[volt = '110kV']",
+  "volt = '±800kV'",
+  "volt = '750kV' AND is_tgy = 'true'",
+  "volt = '750' AND is_tgy = 'false'",
+  "volt = '330kV'",
+  "volt = '220kV'",
+  "volt = '110kV'",
 ])
+
+/**
+ * @description: panel中确定按钮按下触发cql-change事件
+ * @return {*}
+ */
+const handleCqlChange = () => {
+  const siteCqlStr = checkSiteList.value.join(' OR ')
+  const fiberCqlStr = checkFiberList.value.join(' OR ')
+  emit('cql-change', { siteCqlStr, fiberCqlStr })
+}
 
 /**
  * @description: panel关闭的同时也要去掉filterBtn按钮的active状态
