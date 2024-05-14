@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-03-19 16:05:05
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-05-11 15:57:45
+ * @LastEditTime : 2024-05-14 18:56:51
  * @Description  :
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -11,11 +11,19 @@
   <q-page no-padding>
     <div id="mars3dContainer" class="mars3d-container"></div>
   </q-page>
+  <!-- 站点光缆筛选 -->
   <site-fiber-filter-modal
     v-model="uniquenessPanel.siteAndFiberFilterPanel"
     class="filter-wrapper"
     @cql-change="handleCqlChange"
   />
+  <!-- 站点信息面板 -->
+  <site-detail-panel></site-detail-panel>
+
+  <!-- 机房设备列表信息面板 -->
+  <site-equipment-list-dialog
+    v-model="uniquenessPanel.communicationRoomEquPanel"
+  ></site-equipment-list-dialog>
 </template>
 
 <script setup lang="ts">
@@ -24,6 +32,8 @@ import 'mars3d/dist/mars3d.css'
 import * as mars3d from 'mars3d'
 import 'mars3d-space'
 import SiteFiberFilterModal from 'src/components/SiteFiberFilterModal.vue'
+import SiteDetailPanel from 'src/components/SiteDetailPanel/SiteDetailPanel.vue'
+import SiteEquipmentListDialog from 'src/components/SiteDetailPanel/SiteEquipmentListDialog.vue'
 import { watch, onMounted, ref } from 'vue'
 import { stores } from 'src/stores/index.js'
 import { defaultMapSettings } from 'src/config/map/defaultMapSettings.js'
@@ -31,15 +41,12 @@ import ChinaGeoJson from 'src/assets/data/geojson/gansu.json'
 import { Cesium } from 'mars3d'
 import { useTheme } from 'src/hooks/useTheme.js'
 import { usePanel } from 'src/hooks/usePanel.js'
-import {
-  sitePanelTemplate,
-  sitePanelContent,
-} from 'src/utils/template-render.js'
+import { sitePanelContent } from 'src/utils/template-render.js'
 
 let map: any
 const store = stores.viewer.useSceneStore()
 const { theme, activeName } = useTheme()
-const { uniquenessPanel, setFilterStatus } = usePanel()
+const { uniquenessPanel, setFilterStatus, setDetailStatus } = usePanel()
 let siteLayer: any, fiberLayer: any
 const siteLayerOptions = {
   url: 'http://localhost:8080/geoserver/tms/wms',
@@ -165,10 +172,22 @@ const addSiteWmsLayer = () => {
   siteLayer && map.removeLayer(siteLayer)
   siteLayer = new mars3d.layer.WmsLayer(siteLayerOptions)
   map.addLayer(siteLayer)
-  siteLayer.bindPopup(sitePanelContent, sitePanelTemplate)
+  siteLayer.bindPopup(sitePanelContent, {
+    template: `<div class="site-panel animation-spaceInDown q-pa-md box-shadow">
+        <div class="marsBlackPanel-text">{content}</div>
+        <span class="mars3d-popup-close-button closeButton" >×</span>
+      </div>`,
+    horizontalOrigin: Cesium.HorizontalOrigin.LEFT,
+    verticalOrigin: Cesium.VerticalOrigin.CENTER,
+    zIndex: 998,
+  })
   siteLayer.on(mars3d.EventType.popupOpen, (event: any) => {
     const container = event.container
-    console.log('图层上打开了popup', container)
+    const btnDetails = container.querySelector('#btnDetails')
+    btnDetails &&
+      btnDetails.addEventListener('click', () => {
+        setDetailStatus(true)
+      })
   })
   siteLayer.on(mars3d.EventType.popupClose, (event: any) => {
     const container = event.container
@@ -326,15 +345,11 @@ const handleCqlChange = (val: any) => {
   siteLayerOptions.parameters.time = new Date().getTime()
   siteLayer.remove(true)
   addSiteWmsLayer()
-  // siteLayer = new mars3d.layer.WmsLayer(siteLayerOptions)
-  // map.addLayer(siteLayer)
 
   fiberLayerOptions.parameters.cql_filter = val.fiberCqlStr
   fiberLayerOptions.parameters.time = new Date().getTime()
   fiberLayer.remove(true)
   addFiberWmsLayer()
-  // fiberLayer = new mars3d.layer.WmsLayer(fiberLayerOptions)
-  // map.addLayer(fiberLayer)
 }
 </script>
 

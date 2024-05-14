@@ -13,7 +13,7 @@ export const themeClassic = {
    */
   themeName: 'classic',
   global: {
-    themeSettingPanelBgColor: 'rgba(38, 166, 154, 0.3)',
+    themeSettingPanelBgColor: 'rgba(38, 166, 154, 0.8)',
     themeCardBgColor: 'rgba(120, 235, 235, .3)',
     themeBGColor: '#ebf1f6',
     themeBGMaskColor: 'rgba(0, 0, 0, 0)',

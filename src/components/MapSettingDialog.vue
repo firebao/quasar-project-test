@@ -2,7 +2,7 @@
  * @Author       : wwj 318348750@qq.com
  * @Date         : 2024-04-15 09:33:32
  * @LastEditors  : wwj 318348750@qq.com
- * @LastEditTime : 2024-04-18 15:26:44
+ * @LastEditTime : 2024-05-13 10:51:46
  * @Description  : 地图设置组件
  *
  * Copyright (c) 2024 by sjft email: 318348750@qq.com, All Rights Reserved.
@@ -58,7 +58,6 @@ const { theme } = useTheme()
 const tab = ref(tabList.value[0].name)
 
 const handleTabsChange = (val: string) => {
-  console.log(val)
   const index = tabList.value.findIndex((item) => item.name === val)
   if (index !== -1) {
     ;[tabList.value[0], tabList.value[index]] = [
